@@ -1,0 +1,117 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="card mt-5">
+        <form class="card-body" [formGroup]="formGroup" (ngSubmit)="submit()">
+          <a href="javascript:" class="d-flex justify-content-center mt-3">
+            <img src="assets/images/logo-dark.svg" />
+          </a>
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <div class="auth-header">
+                <h2 class="text-secondary mt-5"><b>Sign up</b></h2>
+                <p class="fs-4 mt-2">Enter your credentials to continue</p>
+              </div>
+            </div>
+          </div>
+       
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="firstname"/>
+                <label for="floatingInput">First Name</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="lastname"/>
+                <label for="floatingInput">Last Name</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email"/>
+            <label for="floatingInput">Email Address / Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="password"/>
+            <label for="floatingInput">Password</label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <select class="form-select form-control" id="floatingInput" formControlName="gender" placeholder="">
+                  <option selected value="">Select Gender</option>
+                  <option value="0">Men</option>
+                  <option value="1">Women</option>
+                </select>
+                <label for="floatingInput">Gender</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="lastname"/>
+                <label for="floatingInput">Date Of Birth</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="nationality"/>
+                <label for="floatingInput">Nationality</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="tel" class="form-control" id="floatingInput"  placeholder="xx xxx xxx" formControlName="phonenumber" [maxLength]="8"/>
+                <label for="floatingInput">Phone Number</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="city"/>
+                <label for="floatingInput">City</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="country"/>
+                <label for="floatingInput">Country</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput"  placeholder="" formControlName="postaladdress"/>
+                <label for="floatingInput">Postal Address</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="postalcode" [maxLength]="4"/>
+                <label for="floatingInput">Postal Code</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-check mt-3s">
+            <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+            <label class="form-check-label" for="customCheckc1">
+              <h5>Agree with <span>Terms & Condition.</span></h5>
+            </label>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-secondary p-2" >Sign Up</button>
+          </div>
+          <hr />
+          <h5 class="d-flex justify-content-center">
+            <a [routerLink]="['/guest/login']"> Already have an account? </a>
+          </h5>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
