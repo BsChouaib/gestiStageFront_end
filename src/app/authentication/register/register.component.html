@@ -14,28 +14,82 @@
               </div>
             </div>
           </div>
-       
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="firstname"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                  formControlName="firstname" required />
                 <label for="floatingInput">First Name</label>
+                <mat-error *ngIf="formGroup.get('firstname').touched && formGroup.get('firstname').hasError('required')"
+                  class="text-red">
+                  Required
+                </mat-error>
+                <mat-error
+                  *ngIf="formGroup.get('firstname').touched && formGroup.get('firstname').hasError('minlength')"
+                  class="text-red">
+                  At least 3 characters
+                </mat-error>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="lastname"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                  formControlName="lastname" />
                 <label for="floatingInput">Last Name</label>
+                <mat-error *ngIf="formGroup.get('lastname').touched && formGroup.get('lastname').hasError('required')"
+                  class="text-red">
+                  Required
+                </mat-error>
+                <mat-error *ngIf="formGroup.get('lastname').touched && formGroup.get('lastname').hasError('minlength')"
+                  class="text-red">
+                  At least 3 characters
+                </mat-error>
               </div>
             </div>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email"/>
-            <label for="floatingInput">Email Address / Username</label>
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+              formControlName="email" />
+            <label for="floatingInput">Email Address</label>
+            <mat-error *ngIf="formGroup.get('email').touched && formGroup.get('email').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+            <mat-error *ngIf="formGroup.get('email').touched && formGroup.get('email').hasError('email')"
+              class="text-red">
+              Not valid
+            </mat-error>
           </div>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="password"/>
-            <label for="floatingInput">Password</label>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com"
+                  formControlName="password" />
+                <label for="floatingInput">Password</label>
+                <mat-error *ngIf="formGroup.get('password').touched && formGroup.get('password').hasError('required')"
+                  class="text-red">
+                  Required
+                </mat-error>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com"
+                  formControlName="confirmPassword" />
+                <label for="floatingInput">Confirm Password</label>
+                <mat-error
+                  *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').hasError('required')"
+                  class="text-red">
+                  Required
+                </mat-error>
+                <mat-error
+                  *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').hasError('passwordMismatch')"
+                  class="text-red">
+                  Passwords do not match
+                </mat-error>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -50,7 +104,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="lastname"/>
+                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com"
+                  formControlName="lastname" />
                 <label for="floatingInput">Date Of Birth</label>
               </div>
             </div>
@@ -58,13 +113,15 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="nationality"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder=""
+                  formControlName="nationality" />
                 <label for="floatingInput">Nationality</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="floatingInput"  placeholder="xx xxx xxx" formControlName="phonenumber" [maxLength]="8"/>
+                <input type="tel" class="form-control" id="floatingInput" placeholder="xx xxx xxx"
+                  formControlName="phonenumber" [maxLength]="8" />
                 <label for="floatingInput">Phone Number</label>
               </div>
             </div>
@@ -72,13 +129,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="city"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="city" />
                 <label for="floatingInput">City</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="country"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="country" />
                 <label for="floatingInput">Country</label>
               </div>
             </div>
@@ -86,13 +143,15 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput"  placeholder="" formControlName="postaladdress"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder=""
+                  formControlName="postaladdress" />
                 <label for="floatingInput">Postal Address</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="postalcode" [maxLength]="4"/>
+                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="postalcode"
+                  [maxLength]="4" />
                 <label for="floatingInput">Postal Code</label>
               </div>
             </div>
@@ -104,7 +163,7 @@
             </label>
           </div>
           <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-secondary p-2" >Sign Up</button>
+            <button type="submit" class="btn btn-secondary p-2" [disabled]="formGroup.invalid">Sign Up</button>
           </div>
           <hr />
           <h5 class="d-flex justify-content-center">

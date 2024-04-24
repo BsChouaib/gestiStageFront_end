@@ -1,47 +1,65 @@
 // angular import
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { passwordMatchValidator } from './passwordValidator';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterModule, MatInputModule, FormsModule, ReactiveFormsModule,MatSelectModule,MatFormFieldModule],
+  imports: [CommonModule,RouterModule, MatInputModule, FormsModule, ReactiveFormsModule,MatSelectModule,MatFormFieldModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers:[AuthenticationService]
+
 })
 export default class RegisterComponent implements OnInit {
   formGroup: FormGroup
-  constructor(private router: Router, private form: FormBuilder) { }
+  constructor(private router: Router, private form: FormBuilder,private auth:AuthenticationService) { }
   ngOnInit(): void {
     this.initForm()
   }
   initForm() {
     this.formGroup = this.form.group({
-      email: [''],
-      password: [''],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
       role: [''],
       city: [''],
       country: [''],
       dateofbirth: [''],
-      firstname: [''],
+      firstname: ['',[Validators.required,Validators.minLength(3)]],
       gender: [''],
       isActive: [true],
-      lastname: [''],
+      lastname: ['',[Validators.required,Validators.minLength(3)]],
       nationality: [''],
       phonenumber: [''],
       postaladdress: [''],
-      postalcode: ['']
-
+      postalcode: [''],
+      currentInstitution: [''],
+      currentStudyLevel: [''],
+      enrollmentYear: [0],
+      studyField: ['']
+    },
+    {
+      validator: passwordMatchValidator,
     })
   }
   submit() {
     console.log(this.formGroup.value)
+    this.auth.registre(this.formGroup.value).subscribe({next: ()=>{
+      console.log(this.formGroup.value)
+      this.nav()
+    },error:()=>{
+  
+    }})
   }
   nav() {
-    this.router.navigateByUrl('/main/default')
+    this.router.navigateByUrl('/guest/login')
   }
 }

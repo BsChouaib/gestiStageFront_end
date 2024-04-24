@@ -14,34 +14,37 @@
               </div>
             </div>
           </div>
-          <div class="d-grid">
-            <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-              <img src="assets/images/authentication/google-icon.svg" />Sign In With Google
-            </button>
-          </div>
-          <div class="saprator mt-3">
-            <span>or</span>
-          </div>
-          <h5 class="my-4 d-flex justify-content-center"> Sign in with Email address </h5>
           <div class="form-floating mb-3">
             <input matInput type="email" class="form-control" id="floatingInput" value="info@codedthemes.com" formControlName="email"/>
-            <label for="floatingInput">Email address / Username</label>
+            <label for="floatingInput">Email address </label>
+            <mat-error *ngIf="formGroup.get('email').touched && formGroup.get('email').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+            <mat-error *ngIf="formGroup.get('email').touched && formGroup.get('email').hasError('email')"
+              class="text-red">
+              Not valid
+            </mat-error>
           </div>
           <div class="form-floating mb-3">
             <input matInput type="password" class="form-control" id="password" value="12345" formControlName="password"/>
             <label for="password">Password</label>
+            <mat-error *ngIf="formGroup.get('password').touched && formGroup.get('password').hasError('required')"
+                  class="text-red">
+                  Required
+                </mat-error>
           </div>
           <div class="d-flex mt-1 justify-content-between">
             <div class="form-check">
               <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
               <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>
             </div>
-            <h5 class="text-secondary">
+            <!-- <h5 class="text-secondary">
               <a href="javascript:">Forgot Password?</a>
-            </h5>
+            </h5> -->
           </div>
           <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-secondary" >Sign In</button>
+            <button type="submit" class="btn btn-secondary" [disabled]="formGroup.invalid" > {{loading ? 'Loading..':'Sign In'}}</button>
           </div>
           <hr />
           <h5 class="d-flex justify-content-center">
