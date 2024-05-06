@@ -43,7 +43,7 @@ export default class RegisterComponent implements OnInit {
       postalcode: [''],
       currentInstitution: [''],
       currentStudyLevel: [''],
-      enrollmentYear: [0],
+      enrollmentYear: [''],
       studyField: ['']
     },
     {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConstUtils } from './UrlList';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { AuthUtils } from './auth.utils';
 
 @Injectable({
@@ -12,10 +12,20 @@ export class AuthenticationService {
 
   Login_url =ConstUtils.AUTH_API_Login
   Registre_url =ConstUtils.AUTH_API_Registre
+  public currentUser: Observable<string>;
   private currentUserSubject: BehaviorSubject<string>;
 
-  constructor(private http: HttpClient, private router: Router) { }
 
+  constructor(private http: HttpClient, private router: Router) { 
+      this.currentUserSubject = new BehaviorSubject<string>(
+      localStorage.getItem('token')
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): string {
+    return this.currentUserSubject.value;
+  }
 
   login(data) {
     const reqBody = {
@@ -43,6 +53,13 @@ export class AuthenticationService {
   registre(data) {
     return this.http
       .post<any>(this.Registre_url, data)
+  }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh_token');
+    this.currentUserSubject.next(null);
+    return of({success: false});
   }
   redirectToDashboard(): void {
     let redirectRoute = '';

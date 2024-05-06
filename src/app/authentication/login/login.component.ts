@@ -31,11 +31,13 @@ this.formGroup =this.form.group({
 })
 }
 submit(){
-  this.loading=false
+  this.loading=true
   this.auth.login(this.formGroup.value).subscribe({next: ()=>{
     console.log(this.formGroup.value)
-    this.loading=true
+    this.loading=false
+
   },error:()=>{
+    this.loading=false
 
   }})
 }

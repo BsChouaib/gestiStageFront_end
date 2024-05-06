@@ -4,7 +4,7 @@
       <div class="card mt-5">
         <form class="card-body" [formGroup]="formGroup" (ngSubmit)="submit()">
           <a href="javascript:" class="d-flex justify-content-center mt-3">
-            <img src="assets/images/logo-dark.svg" />
+            <img src="assets/images/pl.png" style="height: 100px;" />
           </a>
           <div class="row">
             <div class="d-flex justify-content-center">
@@ -18,9 +18,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="text" class="form-control"  placeholder="name@example.com"
                   formControlName="firstname" required />
-                <label for="floatingInput">First Name</label>
+                <label >First Name</label>
                 <mat-error *ngIf="formGroup.get('firstname').touched && formGroup.get('firstname').hasError('required')"
                   class="text-red">
                   Required
@@ -34,9 +34,9 @@
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="text" class="form-control"  placeholder="name@example.com"
                   formControlName="lastname" />
-                <label for="floatingInput">Last Name</label>
+                <label >Last Name</label>
                 <mat-error *ngIf="formGroup.get('lastname').touched && formGroup.get('lastname').hasError('required')"
                   class="text-red">
                   Required
@@ -49,9 +49,9 @@
             </div>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            <input type="email" class="form-control"  placeholder="name@example.com"
               formControlName="email" />
-            <label for="floatingInput">Email Address</label>
+            <label >Email Address</label>
             <mat-error *ngIf="formGroup.get('email').touched && formGroup.get('email').hasError('required')"
               class="text-red">
               Required
@@ -64,9 +64,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="password" class="form-control"  placeholder="name@example.com"
                   formControlName="password" />
-                <label for="floatingInput">Password</label>
+                <label >Password</label>
                 <mat-error *ngIf="formGroup.get('password').touched && formGroup.get('password').hasError('required')"
                   class="text-red">
                   Required
@@ -75,9 +75,9 @@
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="password" class="form-control"  placeholder="name@example.com"
                   formControlName="confirmPassword" />
-                <label for="floatingInput">Confirm Password</label>
+                <label >Confirm Password</label>
                 <mat-error
                   *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').hasError('required')"
                   class="text-red">
@@ -94,65 +94,109 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <select class="form-select form-control" id="floatingInput" formControlName="gender" placeholder="">
+                <select class="form-select form-control"  formControlName="gender" placeholder="">
                   <option selected value="">Select Gender</option>
                   <option value="0">Men</option>
                   <option value="1">Women</option>
                 </select>
-                <label for="floatingInput">Gender</label>
+                <label >Gender</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com"
+                <input type="date" class="form-control"  placeholder="name@example.com"
                   formControlName="lastname" />
-                <label for="floatingInput">Date Of Birth</label>
+                <label >Date Of Birth</label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder=""
+                <input type="text" class="form-control"  placeholder=""
                   formControlName="nationality" />
-                <label for="floatingInput">Nationality</label>
+                <label >Nationality</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="floatingInput" placeholder="xx xxx xxx"
+                <input type="tel" class="form-control"  placeholder="xx xxx xxx"
                   formControlName="phonenumber" [maxLength]="8" />
-                <label for="floatingInput">Phone Number</label>
+                <label >Phone Number</label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="city" />
-                <label for="floatingInput">City</label>
+                <input type="text" class="form-control"  placeholder="" formControlName="city" />
+                <label >City</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="country" />
-                <label for="floatingInput">Country</label>
+                <input type="text" class="form-control"  placeholder="" formControlName="country" />
+                <label >Country</label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder=""
+                <input type="text" class="form-control"  placeholder=""
                   formControlName="postaladdress" />
-                <label for="floatingInput">Postal Address</label>
+                <label >Postal Address</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="" formControlName="postalcode"
+                <input type="text" class="form-control"  placeholder="" formControlName="postalcode"
                   [maxLength]="4" />
-                <label for="floatingInput">Postal Code</label>
+                <label >Postal Code</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-floating mb-3">
+                <select class="form-select form-control"  formControlName="role" placeholder="">
+                  <option value="STUDENT">Student</option>
+                  <option value="TEACHER">Teacher</option>
+                </select>
+                <label >Role</label>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row" *ngIf="formGroup.get('role').value == 'STUDENT'">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  placeholder=""
+                  formControlName="currentInstitution" />
+                <label >Current Institution</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  placeholder=""
+                  formControlName="currentStudyLevel" />
+                <label >Study level</label>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="formGroup.get('role').value == 'STUDENT'">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  placeholder=""
+                  formControlName="studyField" />
+                <label >Study field</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  placeholder=""
+                  formControlName="enrollmentYear" />
+                <label >Enrollment Year</label>
               </div>
             </div>
           </div>

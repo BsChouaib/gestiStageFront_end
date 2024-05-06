@@ -15,10 +15,19 @@ const routes: Routes = [
         path: 'color',
         loadComponent: () => import('./elements/element-color/element-color.component')
       },
-      {
+      /* {
         path: 'sample-page',
         loadComponent: () => import('./sample-page/sample-page.component')
+      }, */
+      {
+        path: 'subject',
+        loadComponent: () => import('./sample-page/sample-page.component')
+      },
+      {
+        path: 'claims',
+        loadComponent: () => import('./Claims/claims-page.component')
       }
+
 ];
 
 @NgModule({

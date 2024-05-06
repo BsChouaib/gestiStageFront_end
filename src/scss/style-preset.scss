@@ -6,6 +6,8 @@ Support: support@CodedThemes.net
 File: style.css
 =========================================================================
 =================================================================================== */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'ngx-toastr/toastr';
 
 // main framework
 @import 'settings/preset-variables';

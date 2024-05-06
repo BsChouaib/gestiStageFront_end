@@ -9,7 +9,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 1025;
+  z-index: 999;
   display: flex;
 
   ul {
@@ -355,7 +355,7 @@
 
 @media (min-width: 1025px) {
   .pc-header {
-    z-index: 1027;
+    z-index: 999;
     .header-mobile-collapse {
       display: none;
     }

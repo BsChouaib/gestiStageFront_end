@@ -18,6 +18,10 @@ import { SharedModule } from './theme/shared/shared.module';
 import { ConfigurationComponent } from './mainLayout/configuration/configuration.component';
 import { AuthenticationComponent } from './authentication/guest/authentication.component';
 import { MainComponent } from './mainLayout/main.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './Services/jwt.interceptor';
+import { AuthGuard } from './authentication/auth.guard';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -35,8 +39,21 @@ import { MainComponent } from './mainLayout/main.component';
     ConfigurationComponent,
     AuthenticationComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
-  providers: [NavigationItem],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot() // ToastrModule added
+  ],
+  providers: [
+    NavigationItem /* {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  } */
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

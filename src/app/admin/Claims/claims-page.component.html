@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Claims List">
+      <button mat-raised-button aria-label="Example icon-button with a menu"  color="primary" class="mb-3" (click)="getAllClaims()">
+        <span>Refresh</span>   <mat-icon>refresh</mat-icon>
+      </button>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="sender">
+            <th mat-header-cell *matHeaderCellDef>Sender </th>
+            <td mat-cell *matCellDef="let element"> {{element.emailSender}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> 
+              <span class="badge bg-success" *ngIf="element.statut=='Approved'">{{element.statut}}</span>
+              <span class="badge bg-danger" *ngIf="element.statut=='Rejected'">{{element.statut}}</span>
+              <span class="badge bg-warning text-dark"  *ngIf="element.statut=='Pending'">{{element.statut}}</span>
+             </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" (click)="approveClaim(element)">
+                <mat-icon>check_circle</mat-icon>
+              </button>
+              <!-- Deactivate button -->
+              <button mat-icon-button color="warn" (click)="rejectClaim(element)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div *ngIf=" !dataSource || dataSource?.data.length == 0" class="text-center py-5">
+          No data
+        </div>
+        <div [hidden]="!dataSource || dataSource?.data.length == 0">
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons
+          aria-label="Select page of periodic elements"  >
+        </mat-paginator>
+        </div >
+        
+      </div>
+
+    </app-card>
+  </div>
+</div>

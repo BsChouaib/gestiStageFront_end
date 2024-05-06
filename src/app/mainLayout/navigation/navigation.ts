@@ -37,6 +37,33 @@ const NavigationItems = [
       }
     ]
   },
+  {
+    id: 'main',
+    title: 'Main',
+    type: 'group',
+    icon: 'icon-navigation',
+    role: "ADMIN",
+    children: [
+      {
+        id: 'main',
+        title: 'Subjects',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/admin/subject',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Claims',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/admin/claims',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      }
+    ]
+  },
   /************ Student *************/
   {
     id: 'dashboard',

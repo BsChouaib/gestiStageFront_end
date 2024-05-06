@@ -1,12 +1,74 @@
 <div class="row">
   <div class="col-sm-12">
-    <app-card cardTitle="Hello Card">
-      <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum."
-      </p>
+    <app-card cardTitle="Subject List">
+      <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3" (click)="addSubject()">
+      <span>Add Subject</span>   <mat-icon>add</mat-icon>
+       
+      </button>
+      <button mat-raised-button aria-label="Example icon-button with a menu"  color="primary" class="mb-3" (click)="getAllSubjects()">
+        <span>Refresh</span>   <mat-icon>refresh</mat-icon>
+      </button>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.description"> {{element.title  | truncate : 20}} </td>
+          </ng-container>
+
+          <!-- description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.description"> {{element.description | truncate : 20}} </td>
+          </ng-container>
+
+          <!-- internshipType Column -->
+          <ng-container matColumnDef="internshipType">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element" > {{element.internshipType}} </td>
+          </ng-container>
+
+          <!-- teacher Column -->
+          <ng-container matColumnDef="teacher">
+            <th mat-header-cell *matHeaderCellDef> Email teacher </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.temail" > {{element.temail | truncate : 20 }} </td>
+          </ng-container>
+          <!-- action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="element"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="updateSubject(element)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button mat-menu-item (click)="deleteSubject(element)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div *ngIf=" !dataSource || dataSource?.data.length == 0" class="text-center py-5">
+          No data
+        </div>
+        <div [hidden]="!dataSource || dataSource?.data.length == 0">
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons
+          aria-label="Select page of periodic elements"  >
+        </mat-paginator>
+        </div >
+        
+      </div>
+
     </app-card>
   </div>
 </div>

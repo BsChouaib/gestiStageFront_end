@@ -2,29 +2,35 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationComponent } from './authentication/guest/authentication.component';
 import { MainComponent } from './mainLayout/main.component';
+import { AuthGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    //canActivate: [AuthGuard],
     children: [
       {
         path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
+        // canActivate: [AuthGuard],
+     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
       },
       {
         path: 'student',
-        loadChildren: () => import('./student/student.module').then((m) => m.StudentModule)
+        //canActivate: [AuthGuard],
+         loadChildren: () => import('./student/student.module').then((m) => m.StudentModule)
       },
       {
         path: 'teacher',
-        loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule)
+       // canActivate: [AuthGuard],
+         loadChildren: () => import('./teacher/teacher.module').then((m) => m.TeacherModule)
       }
     ]
   },
   {
     path: '',
     component: AuthenticationComponent,
+   // canActivate: [AuthGuard],
     children: [
       {
         path: 'guest',
