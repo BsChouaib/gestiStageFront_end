@@ -22,6 +22,17 @@ export class ClaimsService {
       Authorization: `Bearer ${this.token}`
     });
       return this.http.get<any>(`${this.Claims_api_url}/all`,{headers});
+
+/*       return this.http.get<any>(`${this.Claims_api_url}/all`);
+ */
+  }
+  getAllClaimsST(){
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`
+    });
+      return this.http.get<any>(`${this.Claims_api_url}/userClaims`,{headers});
   }
   createClaims(data: any) {
     console.log('add active')

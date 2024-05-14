@@ -62,6 +62,26 @@ const NavigationItems = [
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
+      ,
+      {
+        id: 'main',
+        title: 'Teachers',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/admin/teachers',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      }
+      ,
+      {
+        id: 'main',
+        title: 'Students',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/admin/students',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      }
     ]
   },
   /************ Student *************/
@@ -78,6 +98,33 @@ const NavigationItems = [
         type: 'item',
         classes: 'nav-item',
         url: '/student/default',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      }
+    ]
+  },
+  {
+    id: 'main',
+    title: 'Main',
+    type: 'group',
+    icon: 'icon-navigation',
+    role: "STUDENT",
+    children: [
+      {
+        id: 'main',
+        title: 'Subjects',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/student/subject',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Claims',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/student/claims',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -115,7 +162,7 @@ const NavigationItems = [
       }
     ]
   }, */
-  {
+ /* {
     id: 'elements',
     title: 'Elements',
     type: 'group',
@@ -137,7 +184,7 @@ const NavigationItems = [
         classes: 'nav-item',
         url: '/student/color',
         icon: 'ti ti-brush'
-      }/* ,
+      } ,
       {
         id: 'tabler',
         title: 'Tabler',
@@ -147,7 +194,7 @@ const NavigationItems = [
         icon: 'ti ti-plant-2',
         target: true,
         external: true
-      } */
+      } 
     ]
   },
   {
@@ -174,9 +221,9 @@ const NavigationItems = [
         icon: 'ti ti-vocabulary',
         target: true,
         external: true
-      } */
+      } 
     ]
-  },
+  },*/
   /************ Teacher *************/
 
   {

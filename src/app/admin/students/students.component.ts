@@ -1,35 +1,35 @@
-// angular import
-import { HttpClientModule } from '@angular/common/http';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { SubjectAdminService } from 'src/app/Services/admin/subject-admin.service';
 import {MatMenuModule, MatMenuTrigger} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialog,MatDialogModule} from '@angular/material/dialog';
-import { FormDialogComponent } from './update-dialog/update-dialog.component';
-import { DeleteSubjectDialogComponent } from './delete-dialog/delete-dialog.component';
-import { AddSubjectDialogComponent } from './add-dialog/add-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
 
+import { StudentsService } from 'src/app/Services/students.service';
+import { UpdateStudentDialogComponent } from './update-student-dialog/update-student-dialog.component';
+import { DeleteStudentDialogComponent } from './delete-teacher-dialog/delete-student-dialog.component';
+import { AddStudentDialogComponent } from './add-teacher-dialog/add-student-dialog.component';
+
 @Component({
-  selector: 'app-sample-page',
+  selector: 'app-students',
   standalone: true,
   imports: [SharedModule,MatTableModule,MatPaginator,MatMenuModule,MatIconModule,MatButtonModule,MatDialogModule,MatTooltipModule],
-  templateUrl: './sample-page.component.html',
-  styleUrls: ['./sample-page.component.scss'],
-  providers:[SubjectAdminService]
+  templateUrl: './students.component.html',
+  styleUrl: './students.component.scss',
+  providers:[StudentsService]
+
 })
-export default class SamplePageComponent implements AfterViewInit,OnInit,OnDestroy{
-  
-  displayedColumns: string[] = ['title', 'description', 'internshipType', 'teacher','action'];
+export default class StudentsComponent implements OnInit,OnDestroy{
+
+  displayedColumns: string[] = ['fname', 'lname', 'email','action'];
   dataSource :MatTableDataSource<any>;
 
-  constructor(private subjectService : SubjectAdminService, private dialog: MatDialog,  private toast: ToastrService
+  constructor(private studentService : StudentsService, private dialog: MatDialog,  private toast: ToastrService
   ){
 
   }
@@ -38,15 +38,15 @@ export default class SamplePageComponent implements AfterViewInit,OnInit,OnDestr
 
 
   ngOnInit() {
-    this.getAllSubjects()
+    this.getAllStudents()
   }
   ngAfterViewInit() {
     /* this.dataSource = new MatTableDataSource([])
     this.dataSource.paginator= this.paginator */
   }
 
-  getAllSubjects(){
-    this.subjectService.getAllSubject().subscribe({
+  getAllStudents(){
+    this.studentService.getAllStudents().subscribe({
       next:(res)=>{
 
        this.dataSource = new MatTableDataSource(res.data)
@@ -58,36 +58,36 @@ export default class SamplePageComponent implements AfterViewInit,OnInit,OnDestr
       }
     })
   }
-  updateSubject(subject){
+  updateStudent(Student){
     console.log('activ')
-    const dialogRef = this.dialog.open(FormDialogComponent, {
-      data:subject,
+    const dialogRef = this.dialog.open(UpdateStudentDialogComponent, {
+      data:Student,
       width:'700px'
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-      this.getAllSubjects()
+      this.getAllStudents()
       }
     });
   }
-  deleteSubject(subject){
-    const dialogRef = this.dialog.open(DeleteSubjectDialogComponent, {
-      data:subject,
+  deleteStudent(Student){
+    const dialogRef = this.dialog.open(DeleteStudentDialogComponent, {
+      data:Student,
       width:'500px'
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-      this.getAllSubjects()
+      this.getAllStudents()
       }
     });
   }
-  addSubject(){
-    const dialogRef = this.dialog.open(AddSubjectDialogComponent, {
+  addStudent(){
+    const dialogRef = this.dialog.open(AddStudentDialogComponent, {
       width:'700px'
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-      this.getAllSubjects()
+      this.getAllStudents()
       }
     });
   }

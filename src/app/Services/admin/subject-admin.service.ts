@@ -21,7 +21,9 @@ export class SubjectAdminService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`
     });
-      return this.http.get<any>(`${this.Subject_api_url}/all`,{headers});
+      return this.http.get<any>(`${this.Subject_api_url}/all`,{headers}); 
+      //return this.http.get<any>(`${this.Subject_api_url}/all`);
+
   }
   createSubject(data: any) {
     console.log('add active')

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConstUtils } from './UrlList';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of } from 'rxjs';
 import { AuthUtils } from './auth.utils';
 
 @Injectable({
@@ -15,12 +15,17 @@ export class AuthenticationService {
   public currentUser: Observable<string>;
   private currentUserSubject: BehaviorSubject<string>;
 
+  public $refreshToken = new Subject<boolean>;
+  public $refreshTokenReceived = new Subject<boolean>;
 
   constructor(private http: HttpClient, private router: Router) { 
       this.currentUserSubject = new BehaviorSubject<string>(
       localStorage.getItem('token')
     );
     this.currentUser = this.currentUserSubject.asObservable();
+    this.$refreshToken.subscribe((res:any)=> {
+      this.refreshToken()
+    })
   }
 
   public get currentUserValue(): string {
@@ -84,6 +89,7 @@ export class AuthenticationService {
   }
 
   refreshToken(): Observable<any> {
+  //  debugger;
 
     const refreshToken = localStorage.getItem('refresh_token');
     console.log("refresh", refreshToken)

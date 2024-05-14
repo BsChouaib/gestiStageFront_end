@@ -26,6 +26,14 @@ const routes: Routes = [
       {
         path: 'claims',
         loadComponent: () => import('./Claims/claims-page.component')
+      },
+      {
+        path: 'teachers',
+        loadComponent: () => import('./teachers/teachers.component')
+      },
+      {
+        path: 'students',
+        loadComponent: () => import('./students/students.component')
       }
 
 ];

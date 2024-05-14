@@ -52,6 +52,7 @@ export class JwtInterceptor implements HttpInterceptor {
  */  }
 
    private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+    console.log('eeeee ', this.isRefreshing)
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
@@ -59,7 +60,10 @@ export class JwtInterceptor implements HttpInterceptor {
       return this.authenticationService.refreshToken().pipe(
         switchMap((token: any) => {
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(token);
+          console.log('token ', token)
+          this.refreshTokenSubject.next(token?.accessToken);
+         
+
          // Check if request is for refresh token API
        /*  if (this.isRefreshTokenAPI(request.url)) {
           return next.handle(request); 
@@ -67,7 +71,7 @@ export class JwtInterceptor implements HttpInterceptor {
           return next.handle(this.addTokenHeader(request, token));
         }
  */
-        return next.handle(this.addTokenHeader(request, token));
+        return next.handle(this.addTokenHeader(request, token?.accessToken));
 
         }),
         catchError((error) => {
@@ -82,6 +86,8 @@ export class JwtInterceptor implements HttpInterceptor {
         filter(token => token !== null),
         take(1),
         switchMap((token) => {
+          console.log(token)
+
           return next.handle(this.addTokenHeader(request, token));
         })
       );

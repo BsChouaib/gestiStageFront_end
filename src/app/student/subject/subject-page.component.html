@@ -1,0 +1,22 @@
+<div class="pb-3">
+<div class="row">
+  <div *ngFor="let subject of paginatedSubjects" class="col-md-4 col-xl-4">
+    <app-card [cardTitle]="subject.title">
+    <h5>Description:</h5>
+    <p>{{subject.description}}</p>
+    <h6>{{subject.temail}}</h6>
+    <div class="btn-container">
+      <button mat-mini-fab  class="fab-button" matTooltip="Add demand">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    </app-card>
+  </div>
+</div>
+
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[6, 12, 18]"
+               (page)="onPageChange($event)" >
+</mat-paginator>
+</div>

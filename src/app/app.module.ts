@@ -18,10 +18,11 @@ import { SharedModule } from './theme/shared/shared.module';
 import { ConfigurationComponent } from './mainLayout/configuration/configuration.component';
 import { AuthenticationComponent } from './authentication/guest/authentication.component';
 import { MainComponent } from './mainLayout/main.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { JwtInterceptor } from './Services/jwt.interceptor';
 import { AuthGuard } from './authentication/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
+import { customInterceptor } from './Services/custom.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [
-    NavigationItem /* {
+    NavigationItem , /* provideHttpClient(withInterceptors([customInterceptor])) */  /* {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true

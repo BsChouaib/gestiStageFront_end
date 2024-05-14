@@ -1,0 +1,207 @@
+<div class="addContainer">
+  <div class="modalHeader  d-flex justify-content-between align-items-center">
+        <div class="title-head">Add Student </div>
+   <div>
+    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="studentForm" class="register-form m-4">
+    
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="name@example.com"
+              formControlName="firstname" required />
+            <label >First Name</label>
+            <mat-error *ngIf="studentForm.get('firstname').touched && studentForm.get('firstname').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+            <mat-error
+              *ngIf="studentForm.get('firstname').touched && studentForm.get('firstname').hasError('minlength')"
+              class="text-red">
+              At least 3 characters
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="name@example.com"
+              formControlName="lastname" />
+            <label >Last Name</label>
+            <mat-error *ngIf="studentForm.get('lastname').touched && studentForm.get('lastname').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+            <mat-error *ngIf="studentForm.get('lastname').touched && studentForm.get('lastname').hasError('minlength')"
+              class="text-red">
+              At least 3 characters
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control"  placeholder="name@example.com"
+          formControlName="email" autocomplete="email"/>
+        <label >Email Address</label>
+        <mat-error *ngIf="studentForm.get('email').touched && studentForm.get('email').hasError('required')"
+          class="text-red">
+          Required
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('email').touched && studentForm.get('email').hasError('email')"
+          class="text-red">
+          Not valid
+        </mat-error>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control"  placeholder="name@example.com"
+              formControlName="password" autocomplete="new-password"/>
+            <label >Password</label>
+            <mat-error *ngIf="studentForm.get('password').touched && studentForm.get('password').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control"  placeholder="name@example.com"
+              formControlName="confirmPassword" />
+            <label >Confirm Password</label>
+            <mat-error
+              *ngIf="studentForm.get('confirmPassword').touched && studentForm.get('confirmPassword').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+            <mat-error
+              *ngIf="studentForm.get('confirmPassword').touched && studentForm.get('confirmPassword').hasError('passwordMismatch')"
+              class="text-red">
+              Passwords do not match
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <select class="form-select form-control"  formControlName="gender" placeholder="">
+              <option selected value="">Select Gender</option>
+              <option value="0">Men</option>
+              <option value="1">Women</option>
+            </select>
+            <label >Gender</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control"  placeholder="name@example.com"
+              formControlName="dateofbirth" />
+            <label >Date Of Birth</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="nationality" />
+            <label >Nationality</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="tel" class="form-control"  placeholder="xx xxx xxx"
+              formControlName="phonenumber" [maxLength]="8" />
+            <label >Phone Number</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="" formControlName="city" />
+            <label >City</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="" formControlName="country" />
+            <label >Country</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="postaladdress" />
+            <label >Postal Address</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="" formControlName="postalcode"
+              [maxLength]="4" />
+            <label >Postal Code</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="currentInstitution" />
+            <label >Current Institution</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="currentStudyLevel" />
+            <label >Study level</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="studyField" />
+            <label >Study field</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder=""
+              formControlName="enrollmentYear" />
+            <label >Enrollment Year</label>
+          </div>
+        </div>
+      </div>
+    </form>
+    </mat-dialog-content>
+  </div>
+    <mat-dialog-actions class=" justify-content-end" ><!--  -->
+     
+          <div class="example-button-row">
+            <button
+              [mat-dialog-close]="1"
+              color="primary"
+              mat-raised-button
+              (click)="submit()"
+            >
+              Save
+            </button>
+            <button (click)="fermer()" color="warn" mat-raised-button tabindex="-1">Cancel</button>
+          </div>
+       
+    </mat-dialog-actions>
+
+      
+    
