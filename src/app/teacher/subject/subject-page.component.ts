@@ -13,7 +13,6 @@ import {MatDialog,MatDialogModule} from '@angular/material/dialog';
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
-import { AddDemandDialogComponent } from './add-demand-dialog/add-demand-dialog.component';
 
 @Component({
   selector: 'app-subject-student-page',
@@ -24,9 +23,9 @@ import { AddDemandDialogComponent } from './add-demand-dialog/add-demand-dialog.
   providers:[SubjectAdminService],
   encapsulation: ViewEncapsulation.None
 })
-export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnDestroy{
+export default class SubjectTeacherComponent implements AfterViewInit,OnInit,OnDestroy{
   
-  displayedColumns: string[] = ['title', 'description', 'internshipType', 'teacher','action'];
+  displayedColumns: string[] = ['title', 'description', 'internshipType'];
   dataSource :MatTableDataSource<any>;
   length = 0;
   pageSize = 6;
@@ -53,9 +52,9 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
   getAllSubjects(){
     this.subjectService.getAllSubject().subscribe({
       next: (res) => {
-        this.Subjects = res.data;
-        this.length = res.data.length;
-        this.paginateSubjects();
+      
+        this.dataSource = new MatTableDataSource(res.data)
+        this.dataSource.paginator = this.paginator
       },
       error: (err) => {
         console.log(err);
@@ -73,40 +72,7 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
     this.pageSize = event.pageSize;
     this.paginateSubjects();
   }
- /*  updateSubject(subject){
-    console.log('activ')
-    const dialogRef = this.dialog.open(FormDialogComponent, {
-      data:subject,
-      width:'700px'
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-      this.getAllSubjects()
-      }
-    });
-  }
-  deleteSubject(subject){
-    const dialogRef = this.dialog.open(DeleteSubjectDialogComponent, {
-      data:subject,
-      width:'500px'
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-      this.getAllSubjects()
-      }
-    });
-  } */
-  addDemand(subject){
-    const dialogRef = this.dialog.open(AddDemandDialogComponent, {
-      width:'700px',
-      data:subject,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-      this.getAllSubjects()
-      }
-    });
-  }
+
   ngOnDestroy() {
     this.toast.clear()  }
 

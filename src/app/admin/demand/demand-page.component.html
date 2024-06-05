@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Demand List">
+      <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="mb-3"
+        (click)="getAlldemands()">
+        <span>Refresh</span> <mat-icon>refresh</mat-icon>
+      </button>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+          <!-- demandeDate Column -->
+          <ng-container matColumnDef="demandeDate">
+            <th mat-header-cell *matHeaderCellDef>Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.demandeDate}} </td>
+          </ng-container>
+
+          <!-- subject Column -->
+          <ng-container matColumnDef="subject">
+            <th mat-header-cell *matHeaderCellDef> Subject </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.subject.title"> {{element.subject.title |
+              truncate : 15}} </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="badge bg-success" *ngIf="element.status=='Approved'">{{element.status}}</span>
+              <span class="badge bg-danger" *ngIf="element.status=='Rejected'">{{element.status}}</span>
+              <span class="badge bg-warning text-dark" *ngIf="element.status=='Pending'">{{element.status}}</span>
+            </td>
+          </ng-container>
+          <!-- cv Column -->
+          <ng-container matColumnDef="resume">
+            <th mat-header-cell *matHeaderCellDef> Resume </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button aria-label="Example icon-button with a menu"
+                (click)="downloadResume(element);$event.stopPropagation()">
+                <mat-icon>download</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <!-- cover lettre Column -->
+          <ng-container matColumnDef="cover_letter">
+            <th mat-header-cell *matHeaderCellDef> Cover Letter </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button aria-label="Example icon-button with a menu"
+                (click)="downloadCoverLetter(element);$event.stopPropagation()">
+                <mat-icon>download</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <!-- action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" (click)="approveDemand(element)" (click)="$event.stopPropagation()">
+                <mat-icon>check_circle</mat-icon>
+              </button>
+              <!-- Deactivate button -->
+              <button mat-icon-button color="warn" (click)="rejectDemand(element)" (click)="$event.stopPropagation()"> 
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+              <div class="example-element-detail " [@detailExpand]="
+          row == expandedElement ? 'expanded' : 'collapsed'
+        " style="margin-left: 100px;">
+                <div class="example-element-diagram">
+                  <div style="display: flex">
+                    <span>Description:&nbsp;</span>
+                    <span id="detail">{{ row.subject.description }}</span>
+                  </div>
+                  <div style="display: flex">
+                    <span>Teacher mail:&nbsp;</span>
+                    <span id="detail">{{ row.subject.temail }}</span>
+                  </div>
+                  <div style="display: flex">
+                    <span>Internship Type:&nbsp;</span>
+                    <span id="detail">{{ row.subject.internshipType }}</span>
+                  </div>
+
+                  <!-- <div style="display: flex">
+            <span>Price:&nbsp;</span>
+            <span id="detail">{{ row.demandeDate }} DT</span>
+          </div>
+          <div style="display: flex" *ngIf="row.demandeDate">
+            <span>Meeting:&nbsp;</span>
+            <span id="detail">{{ row.demandeDate }}</span>
+          </div>
+          <div style="display: flex" *ngIf="row.demandeDate">
+            <span>Package:&nbsp;</span>
+            <span id="detail">{{ row.demandeDate }}</span>
+          </div>
+          <div style="display: flex">
+            <span>Date Création:&nbsp;</span>
+            <span id="detail">{{ row.demandeDate }}</span>
+          </div> -->
+
+                </div>
+
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"
+            [class.example-expanded-row]="expandedElement === row" (click)="
+                    expandedElement = expandedElement === row ? null : row
+                  " class="example-element-row"></tr>
+          <tr mat-row *matRowDef="let element; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+        <div *ngIf=" !dataSource || dataSource?.data.length == 0" class="text-center py-5">
+          No data
+        </div>
+        <div [hidden]="!dataSource || dataSource?.data.length == 0">
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+
+      </div>
+
+    </app-card>
+  </div>
+</div>

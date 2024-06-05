@@ -18,7 +18,15 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./sample-page/sample-page.component')
-      }
+      },
+      {
+        path: 'subject',
+        loadComponent: () => import('./subject/subject-page.component')
+      },
+      {
+        path: 'claims',
+        loadComponent: () => import('./Claims/claims-page.component')
+      },
 ];
 
 @NgModule({

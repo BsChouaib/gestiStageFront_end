@@ -10,10 +10,13 @@ const routes: Routes = [
         path: 'claims',
         loadComponent: () => import('./Claims/claims-page.component')
       },
-      ,
       {
         path: 'subject',
         loadComponent: () => import('./subject/subject-page.component')
+      },
+      {
+        path: 'demand',
+        loadComponent: () => import('./demand/demand-page.component')
       }
 ];
 

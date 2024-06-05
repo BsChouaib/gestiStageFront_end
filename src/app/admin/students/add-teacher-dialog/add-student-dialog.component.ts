@@ -1,5 +1,5 @@
-import {  MatDialogRef, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule } from '@angular/material/dialog';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {  MatDialogRef, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSelect } from "@angular/material/select";
 
@@ -32,12 +32,14 @@ export class AddStudentDialogComponent implements OnInit, OnDestroy, AfterViewIn
   studentForm: FormGroup
   constructor(
     public dialogRef: MatDialogRef<AddStudentDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: UntypedFormBuilder,
     private studentService : StudentsService,
     private toast :ToastrService
 
 
   ) {
+    console.log(data)
   }
 
   createContactForm(): UntypedFormGroup {

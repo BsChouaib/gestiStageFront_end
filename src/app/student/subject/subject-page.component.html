@@ -6,7 +6,7 @@
     <p>{{subject.description}}</p>
     <h6>{{subject.temail}}</h6>
     <div class="btn-container">
-      <button mat-mini-fab  class="fab-button" matTooltip="Add demand">
+      <button mat-mini-fab  class="fab-button" matTooltip="Add demand" (click)="addDemand(subject)">
         <mat-icon>add</mat-icon>
       </button>
     </div>

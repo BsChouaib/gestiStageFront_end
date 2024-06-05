@@ -81,6 +81,15 @@ const NavigationItems = [
         url: '/admin/students',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Demand',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/admin/demand',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
       }
     ]
   },
@@ -125,6 +134,15 @@ const NavigationItems = [
         type: 'item',
         classes: 'nav-item',
         url: '/student/claims',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Demand',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/student/demand',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -242,6 +260,42 @@ const NavigationItems = [
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
+    ]
+  },
+  {
+    id: 'main',
+    title: 'Main',
+    type: 'group',
+    icon: 'icon-navigation',
+    role: "TEACHER",
+    children: [
+      {
+        id: 'main',
+        title: 'Subjects',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/teacher/subject',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Claims',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/teacher/claims',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },/*
+      {
+        id: 'main',
+        title: 'Demand',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/student/demand',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      } */
     ]
   },
 ];

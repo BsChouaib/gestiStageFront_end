@@ -23,7 +23,7 @@ import { UpdateClaimDialogComponent } from './update-claims-dialog/update-claims
   styleUrls: ['./claims-page.component.scss'],
   providers: [ClaimsService]
 })
-export default class SamplePageComponent implements AfterViewInit, OnInit,OnDestroy {
+export default class TeacherClaimsComponent implements AfterViewInit, OnInit,OnDestroy {
 
   displayedColumns: string[] = ['sender', 'description', 'status', 'action'];
   dataSource: MatTableDataSource<any>;

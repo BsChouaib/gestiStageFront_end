@@ -14,6 +14,7 @@ import { StudentsService } from 'src/app/Services/students.service';
 import { UpdateStudentDialogComponent } from './update-student-dialog/update-student-dialog.component';
 import { DeleteStudentDialogComponent } from './delete-teacher-dialog/delete-student-dialog.component';
 import { AddStudentDialogComponent } from './add-teacher-dialog/add-student-dialog.component';
+import { UniversityService } from 'src/app/Services/university.service';
 
 @Component({
   selector: 'app-students',
@@ -21,15 +22,15 @@ import { AddStudentDialogComponent } from './add-teacher-dialog/add-student-dial
   imports: [SharedModule,MatTableModule,MatPaginator,MatMenuModule,MatIconModule,MatButtonModule,MatDialogModule,MatTooltipModule],
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss',
-  providers:[StudentsService]
+  providers:[StudentsService,UniversityService]
 
 })
 export default class StudentsComponent implements OnInit,OnDestroy{
 
   displayedColumns: string[] = ['fname', 'lname', 'email','action'];
   dataSource :MatTableDataSource<any>;
-
-  constructor(private studentService : StudentsService, private dialog: MatDialog,  private toast: ToastrService
+  studyFieldsList:any
+  constructor(private studentService : StudentsService, private dialog: MatDialog,  private toast: ToastrService, private univService :UniversityService
   ){
 
   }
@@ -38,7 +39,8 @@ export default class StudentsComponent implements OnInit,OnDestroy{
 
 
   ngOnInit() {
-    this.getAllStudents()
+    this.getAllStudents();
+    this.getAllStudyFields()
   }
   ngAfterViewInit() {
     /* this.dataSource = new MatTableDataSource([])
@@ -83,13 +85,26 @@ export default class StudentsComponent implements OnInit,OnDestroy{
   }
   addStudent(){
     const dialogRef = this.dialog.open(AddStudentDialogComponent, {
-      width:'700px'
+      width:'700px',
+      data:this.studyFieldsList
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
       this.getAllStudents()
       }
     });
+  }
+  getAllStudyFields(){
+    this.univService.getAllStudyFields().subscribe({
+      next:(res)=>{
+
+       this.studyFieldsList = res?.data.StudyField
+      },
+
+      error:(err)=>{
+          console.log(err)
+      }
+    })
   }
   ngOnDestroy() {
     this.toast.clear()  }
