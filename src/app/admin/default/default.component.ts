@@ -30,24 +30,21 @@ export default class DefaultComponent implements OnInit, AfterViewInit {
     basedOnNationality: 
     {
       data:[
-        { title: "Tunisian", total: 12, estimation: 11.5 },
-        { title: "gerver", total: 12, estimation: 2.00 },
-        { title: "adad", total: 12, estimation: 22.00 },
-        { title: "yubhijk", total: 12, estimation: 10.00 },
-        { title: "hbhjb", total: 12, estimation: 7.6 },
-        { title: "pmni", total: 12, estimation: 0.99 },
-        { title: "olxjue", total: 12, estimation: 1.91 },
-        { title: "dazkn", total: 12, estimation: 10.00 },
-        { title: "buidqs", total: 12, estimation: 5.00 },
-        { title: "dzczfe", total: 12, estimation: 4.00 },
-        { title: "bcibiu", total: 12, estimation: 1.00 }
+        { title: "Tunisian", total: 120, estimation: 84.5 },
+        { title: "Kenyan", total: 10, estimation: 7.04 },
+        { title: "Libyan", total: 3, estimation: 2.06 },
+        { title: "Malaysian", total: 1, estimation: 0.70 },
+        { title: "Panamanian", total: 8, estimation: 5.63 }
       ],
       total: 100
     },
     basedOnStudyField: {
       data:[
-        { title: "Algebra", total: 36, estimation: 36.00 },
-        { title: "IT", total: 64, estimation: 64.00 }
+        { title: "IRM-Opt. BD-IA", total: 36, estimation: 25.89 },
+        { title: "IRM-Opt. IT finance", total: 20, estimation: 14.38 },
+        { title: "IRM-Opt. Ingénierie des Systèmes d’Information et du Logiciel", total: 12, estimation: 8.63 },
+        { title: "IRM-Opt. Ingénierie des Systèmes Embarqués et Mobiles", total: 4, estimation: 2.87 },
+        { title: "Informatique, Réseaux et Multimédia (IRM)", total: 67, estimation: 48.20 }
       ],
       total: 100
     },
