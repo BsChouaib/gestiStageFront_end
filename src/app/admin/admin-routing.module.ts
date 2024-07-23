@@ -38,6 +38,14 @@ const routes: Routes = [
       {
         path: 'demand',
         loadComponent: () => import('./demand/demand-page.component')
+      },
+      {
+        path: 'presentation',
+        loadComponent: () => import('./presentation/presentation.component')
+      },
+      {
+        path: 'internship',
+        loadComponent: () => import('./internship/internship.component')
       }
 
 ];

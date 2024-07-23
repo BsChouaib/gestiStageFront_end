@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,7 +23,10 @@ import { JwtInterceptor } from './Services/jwt.interceptor';
 import { AuthGuard } from './authentication/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { customInterceptor } from './Services/custom.interceptor';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
+registerLocaleData(localeFr, 'fr');
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,7 @@ import { customInterceptor } from './Services/custom.interceptor';
     useClass: JwtInterceptor,
     multi: true
   } */
-  ],
+    {provide: LOCALE_ID, useValue: 'fr' }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

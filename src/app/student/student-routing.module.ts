@@ -18,6 +18,16 @@ const routes: Routes = [
         path: 'demand',
         loadComponent: () => import('./demand/demand-page.component')
       }
+      ,
+      {
+        path: 'internship',
+        loadComponent: () => import('./internship/internship-page.component')
+      }
+      ,
+      {
+        path: 'presentation',
+        loadComponent: () => import('./presentation/presentation-page.component')
+      }
 ];
 
 @NgModule({

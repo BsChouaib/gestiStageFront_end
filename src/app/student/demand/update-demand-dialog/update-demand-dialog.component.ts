@@ -44,8 +44,8 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
   ) {
     this.demands=demand
     console.log(demand)
-    this.cover_letter=demand.motivationLetter.fileName
-    this.resume=demand.resume.fileName
+    this.cover_letter=demand.motivationLetter?.fileName
+    this.resume=demand.resume?.fileName
   }
 
   createContactForm(): UntypedFormGroup {
@@ -54,6 +54,7 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
       cover_letter:[null],
       subjectId:[this.demands?.subject.subjectId],
       id:[this.demands?.demandId],
+      email:[''],
     });
   }
 
@@ -71,6 +72,7 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
       closeButton: true,
     }); 
     let data = this.demandForm.value
+    console.log(data)
     const formData = new FormData();
     if(data.cv)
     formData.append("resume", data.cv);
@@ -79,7 +81,6 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
      this.demandService.updateDemand(data,formData).subscribe({
       next:(res)=>{
         this.toast.clear(loadingToast.toastId);
-
         this.toast.success('Demand updated Successfully', 'Success', {
           progressBar: true,
           closeButton: true,
@@ -105,6 +106,8 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
     }
   }
   onCLChange(event: any) {
+    console.log(event)
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.demandForm.patchValue({

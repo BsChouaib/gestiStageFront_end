@@ -1,0 +1,38 @@
+<div class="pb-3">
+
+  <div class="row" *ngIf="length !==0 && Internships">
+    <div *ngFor="let internship of Internships" class="col-md-12 col-xl-12">
+      <app-card [cardTitle]="internship.titre">
+        <p><strong>Start Date:&nbsp;</strong>{{internship.dateDebut | date : 'yyyy-MM-dd'}}</p>
+        <p><strong>End Date:&nbsp;</strong>{{internship.dateFin | date : 'yyyy-MM-dd'}}</p>
+        <p><strong>State:&nbsp;</strong>
+          <span class="badge bg-success" *ngIf="internship.state=='Done'">{{internship.state}}</span>
+          <span class="badge bg-danger" *ngIf="internship.state=='Failed'">{{internship.state}}</span>
+          <span class="badge bg-warning text-dark" *ngIf="internship.state=='InProgress'">{{internship.state}}</span>
+        </p>
+        <p><strong>Teacher Name:&nbsp;</strong>{{internship.teacher?.firstname + ' ' + internship.teacher?.lastname}}
+        </p>
+        <p><strong>Teacher Email:&nbsp;</strong>{{internship.teacher?.email}}</p>
+
+      </app-card>
+    </div>
+
+  </div>
+  <!-- <div *ngIf="">
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[6, 12, 18]"
+               (page)="onPageChange($event)" >
+</mat-paginator> </div> -->
+  <div class="row" *ngIf="length === 0 || !Internships">
+    <div class="col-md-12 col-xl-12">
+
+      <h3 style="text-align: center;padding: 50px;background-color: white;border-radius: 10px;">No Internship Founded
+      </h3>
+
+
+
+    </div>
+  </div>
+
+</div>

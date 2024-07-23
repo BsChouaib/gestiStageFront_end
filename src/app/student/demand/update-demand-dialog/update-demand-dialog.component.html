@@ -13,7 +13,7 @@
     
       
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="resume.length === 0">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="resume.length === 0 || !resume">
           <label for="floatingInput">CV </label>
           <div class="form-floating mb-3">
             <input type="file" class="form-control" id="floatingInput" (change)="onFileChange($event)" accept="application/pdf" id="cvInput">           
@@ -22,7 +22,7 @@
             <button type="button" class="btn btn-danger btn-sm" (click)="removeCV()">Delete CV</button>
           </div>
         </div>
-        <div class="row" *ngIf="resume.length !== 0">
+        <div class="row" *ngIf="resume.length !== 0 && resume">
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 mb-3">
             <img
               src="assets/images/uploadIcons/pdfUpl.png"
@@ -36,7 +36,7 @@
           </button>
           </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="cover_letter?.length === 0">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="cover_letter?.length === 0 || !cover_letter">
           <label for="floatingInput">Cover letter </label>
           <div class="form-floating mb-3">
             <input type="file" class="form-control" id="floatingInput" (change)="onCLChange($event)" accept="application/pdf" id="clInput">           
@@ -45,7 +45,7 @@
             <button type="button" class="btn btn-danger btn-sm" (click)="removeCL()">Delete Cover letter</button>
           </div>
         </div>
-        <div class="row" *ngIf="cover_letter.length !== 0">
+        <div class="row" *ngIf="cover_letter?.length !== 0 && cover_letter ">
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 mb-3">
             <img
               src="assets/images/uploadIcons/pdfUpl.png"
@@ -71,8 +71,8 @@
               color="primary"
               mat-raised-button
               (click)="submit()"
-              [disabled]="cover_letter?.length !== 0 && resume?.length !== 0"
-            >
+              
+            ><!-- [disabled]="demandForm.invalid" -->
               Save
             </button>
             <button (click)="fermer()" color="warn" mat-raised-button tabindex="-1">Cancel</button>

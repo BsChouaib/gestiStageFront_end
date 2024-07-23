@@ -1,0 +1,40 @@
+.primary-meeting-label
+   { font-size: smaller;
+    color: gray;
+    margin-left: auto}
+.title-head{
+    margin:0 auto  
+      }
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.file-info span {
+  margin-right: 10px;
+}
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input[type="file"] {
+  flex-grow: 1;
+}
+
+.input-group button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

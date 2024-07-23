@@ -34,7 +34,11 @@
                   Required
                 </mat-error>
           </div>
-          <div class="d-flex mt-1 justify-content-between">
+          <mat-error *ngIf="msg"
+          class="text-red">
+          {{msg}}
+        </mat-error>
+          <div class="d-flex mt-1 justify-content-between mt-2">
             <div class="form-check">
               <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
               <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>

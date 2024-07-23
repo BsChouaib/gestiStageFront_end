@@ -5,34 +5,38 @@
       <span>Add Subject</span>   <mat-icon>add</mat-icon>
        
       </button>
-      <button mat-raised-button aria-label="Example icon-button with a menu"  color="primary" class="mb-3" (click)="getAllSubjects()">
+      <button mat-raised-button aria-label="Example icon-button with a menu"  color="primary" class="mb-3 me-3" (click)="getAllSubjects()">
         <span>Refresh</span>   <mat-icon>refresh</mat-icon>
       </button>
+     <!--  <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3" (click)="generatePDF()">
+        <span>Generate PDF</span>   <mat-icon>add</mat-icon>
+         
+        </button> -->
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
 
           <!-- title Column -->
           <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>Title </th>
-            <td mat-cell *matCellDef="let element" [matTooltip]="element.title"> {{element.title  | truncate : 20}} </td>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element?.title"> {{element?.title || '' | truncate : 20}} </td>
           </ng-container>
 
           <!-- description Column -->
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let element" [matTooltip]="element.description"> {{element.description | truncate : 20}} </td>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element?.description"> {{element?.description || '' | truncate : 20}} </td>
           </ng-container>
 
           <!-- internshipType Column -->
           <ng-container matColumnDef="internshipType">
             <th mat-header-cell *matHeaderCellDef> Type </th>
-            <td mat-cell *matCellDef="let element" > {{element.internshipType}} </td>
+            <td mat-cell *matCellDef="let element" > {{element?.internshipType}} </td>
           </ng-container>
 
           <!-- teacher Column -->
           <ng-container matColumnDef="teacher">
             <th mat-header-cell *matHeaderCellDef> Email teacher </th>
-            <td mat-cell *matCellDef="let element" [matTooltip]="element.temail" > {{element.temail | truncate : 20 }} </td>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element?.temail" > {{element?.temail || '' | truncate : 20 }} </td>
           </ng-container>
           <!-- action Column -->
           <ng-container matColumnDef="action">

@@ -64,7 +64,7 @@ export class DemandService {
       Authorization: `Bearer ${this.token}`
     });
 
-    return this.http.put<any>(`${this.Demand_api_url}/${data.id}`, formdata, { headers });
+    return this.http.put<any>(`${this.Demand_api_url}/${data.id}?subjectId=${data.subjectId}`, formdata, { headers });
   }
 
   // Delete a Demand by ID

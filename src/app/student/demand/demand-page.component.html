@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <app-card cardTitle="Demand List">
       <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3"
-        (click)="addDemand()">
+        (click)="addDemand()" *ngIf="!hasDemand">
         <span>Add demand</span> <mat-icon>add</mat-icon>
 
       </button>
@@ -11,7 +11,7 @@
         <span>Refresh</span> <mat-icon>refresh</mat-icon>
       </button>
       <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows >
 
           <!-- demandeDate Column -->
           <ng-container matColumnDef="demandeDate">
@@ -38,11 +38,13 @@
           <!-- cv Column -->
           <ng-container matColumnDef="resume">
             <th mat-header-cell *matHeaderCellDef> Resume </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" >
+              
               <button mat-icon-button aria-label="Example icon-button with a menu"
-                (click)="downloadResume(element);$event.stopPropagation()">
+                (click)="downloadResume(element);$event.stopPropagation()" *ngIf="element.resume">
                 <mat-icon>download</mat-icon>
               </button>
+              <span *ngIf="!element.resume"><b>--</b></span>
             </td>
           </ng-container>
           <!-- cover lettre Column -->
@@ -50,9 +52,10 @@
             <th mat-header-cell *matHeaderCellDef> Cover Letter </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button aria-label="Example icon-button with a menu"
-                (click)="downloadCoverLetter(element);$event.stopPropagation()">
+                (click)="downloadCoverLetter(element);$event.stopPropagation()" *ngIf="element.motivationLetter">
                 <mat-icon>download</mat-icon>
               </button>
+              <span  *ngIf="!element.motivationLetter"><b>--</b></span>
             </td>
           </ng-container>
           <!-- action Column -->

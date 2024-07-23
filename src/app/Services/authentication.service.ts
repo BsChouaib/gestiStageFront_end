@@ -68,18 +68,19 @@ export class AuthenticationService {
   }
   redirectToDashboard(): void {
     let redirectRoute = '';
+    console.log(localStorage.getItem('role'))
     switch (localStorage.getItem('role')) {
       case "ADMIN":
-        redirectRoute = '/admin/default';
+        redirectRoute = 'app/admin/default';
         break;
       case "TEACHER":
-        redirectRoute = '/teacher/default';
+        redirectRoute = 'app/teacher/default';
         break;
       case "STUDENT":
-        redirectRoute = '/student/default';
+        redirectRoute = 'app/student/default';
         break;
       default:
-        redirectRoute = '/guest/login';
+        redirectRoute = 'auth/guest/login';
         break;
     }
 

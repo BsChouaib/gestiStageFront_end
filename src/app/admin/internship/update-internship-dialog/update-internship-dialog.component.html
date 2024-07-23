@@ -1,0 +1,93 @@
+<div class="addContainer">
+  <div class="modalHeader  d-flex justify-content-between align-items-center">
+        <div class="title-head">Update Internship </div>
+   <div>
+    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="internshipForm" class="register-form m-4">
+      <div class="col-md-12">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" 
+            formControlName="titre" />
+          <label >Title</label>
+          <mat-error *ngIf="internshipForm.get('titre').touched && internshipForm.get('titre').hasError('required')"
+            class="text-red">
+            Required
+          </mat-error>
+          <mat-error *ngIf="internshipForm.get('titre').touched && internshipForm.get('titre').hasError('minlength')"
+            class="text-red">
+            At least 5 characters
+          </mat-error>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control" 
+              formControlName="dateDebut" />
+            <label >Start Date</label>
+            <mat-error *ngIf="internshipForm.get('dateDebut').touched && internshipForm.get('dateDebut').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control" 
+              formControlName="dateFin" />
+            <label >End Date</label>
+            <mat-error *ngIf="internshipForm.get('dateFin').touched && internshipForm.get('dateFin').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <label for="floatingInput">Report </label>
+          <div class="form-floating mb-3">
+            <input type="file" class="form-control" id="floatingInput" (change)="onChangeReport($event)" accept="application/pdf" id="cvInput">           
+          </div>
+          <div *ngIf="internshipForm.value.cv" class="file-info">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeReport()">Delete CV</button>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <label for="floatingInput">Journal </label>
+          <div class="form-floating mb-3">
+            <input type="file" class="form-control" id="floatingInput" (change)="onChangeJournal($event)" accept="application/pdf" id="clInput">           
+          </div>
+          <div *ngIf="internshipForm.value.cover_letter" class="file-info">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeJournal()">Delete Cover letter</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </mat-dialog-content>
+  </div>
+    <mat-dialog-actions class=" justify-content-end" ><!--  -->
+     
+          <div class="example-button-row">
+            <button
+              [mat-dialog-close]="1"
+              color="primary"
+              mat-raised-button
+              (click)="submit()"
+              [disabled]="internshipForm.invalid"
+            >
+              Save
+            </button>
+            <button (click)="fermer()" color="warn" mat-raised-button tabindex="-1">Cancel</button>
+          </div>
+       
+    </mat-dialog-actions>
+
+      
+    

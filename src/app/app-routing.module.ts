@@ -5,8 +5,9 @@ import { MainComponent } from './mainLayout/main.component';
 import { AuthGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
+  
   {
-    path: '',
+    path: 'app',
     component: MainComponent,
     //canActivate: [AuthGuard],
     children: [
@@ -28,7 +29,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'auth',
     component: AuthenticationComponent,
    // canActivate: [AuthGuard],
     children: [
@@ -37,7 +38,12 @@ const routes: Routes = [
         loadChildren: () => import('./authentication/authentication.module').then((m) => m.AuthenticationModule)
       }
     ]
-  }
+  },
+ /*  {
+    path: '**',
+     redirectTo: 'auth/guest/login', pathMatch: 'full'
+  }, */
+
 ];
 
 @NgModule({

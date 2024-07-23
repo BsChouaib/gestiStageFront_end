@@ -1,0 +1,32 @@
+<div class="addContainer">
+  <div class="modalHeader  d-flex justify-content-between align-items-center">
+        <div class="title-head">Delete Internship <strong>{{internship?.titre}}</strong></div>
+   <div>
+    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <mat-dialog-content>
+    <p>Are you sur to delete this Internship ?</p>
+    </mat-dialog-content>
+  </div>
+    <mat-dialog-actions class=" justify-content-end" ><!--  -->
+     
+          <div class="example-button-row">
+            <button
+              [mat-dialog-close]="1"
+              color="primary"
+              mat-raised-button
+              (click)="submit()"
+            >
+              Yes
+            </button>
+            <button (click)="fermer()" color="warn" mat-raised-button tabindex="-1">Cancel</button>
+          </div>
+       
+    </mat-dialog-actions>
+
+      
+    

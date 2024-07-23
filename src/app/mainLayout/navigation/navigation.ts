@@ -31,7 +31,7 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/default',
+        url: '/app/admin/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -49,7 +49,7 @@ const NavigationItems = [
         title: 'Subjects',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/subject',
+        url: '/app/admin/subject',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -58,7 +58,7 @@ const NavigationItems = [
         title: 'Claims',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/claims',
+        url: '/app/admin/claims',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -68,7 +68,7 @@ const NavigationItems = [
         title: 'Teachers',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/teachers',
+        url: '/app/admin/teachers',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -78,7 +78,7 @@ const NavigationItems = [
         title: 'Students',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/students',
+        url: '/app/admin/students',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -87,14 +87,32 @@ const NavigationItems = [
         title: 'Demand',
         type: 'item',
         classes: 'nav-item',
-        url: '/admin/demand',
+        url: '/app/admin/demand',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Presentation',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/admin/presentation',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      },
+      {
+        id: 'main',
+        title: 'Internship',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/admin/internship',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
     ]
   },
   /************ Student *************/
-  {
+ /*  {
     id: 'dashboard',
     title: 'Dashboard',
     type: 'group',
@@ -106,12 +124,12 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/default',
+        url: '/app/student/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
     ]
-  },
+  }, */
   {
     id: 'main',
     title: 'Main',
@@ -124,7 +142,7 @@ const NavigationItems = [
         title: 'Subjects',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/subject',
+        url: '/app/student/subject',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -133,7 +151,7 @@ const NavigationItems = [
         title: 'Claims',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/claims',
+        url: '/app/student/claims',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -142,10 +160,28 @@ const NavigationItems = [
         title: 'Demand',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/demand',
+        url: '/app/student/demand',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
-      }
+      },
+      {
+        id: 'main',
+        title: 'Internship',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/student/internship',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      } ,
+      {
+        id: 'main',
+        title: 'Presentation',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/student/presentation',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      } 
     ]
   },
  /*  {
@@ -192,7 +228,7 @@ const NavigationItems = [
         title: 'Typography',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/typography',
+        url: '/app/student/typography',
         icon: 'ti ti-typography'
       },
       {
@@ -200,7 +236,7 @@ const NavigationItems = [
         title: 'Colors',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/color',
+        url: '/app/student/color',
         icon: 'ti ti-brush'
       } ,
       {
@@ -226,7 +262,7 @@ const NavigationItems = [
         id: 'sample-page',
         title: 'Sample Page',
         type: 'item',
-        url: '/student/sample-page',
+        url: '/app/student/sample-page',
         classes: 'nav-item',
         icon: 'ti ti-brand-chrome'
       }/* ,
@@ -244,7 +280,7 @@ const NavigationItems = [
   },*/
   /************ Teacher *************/
 
-  {
+ /*  {
     id: 'dashboard',
     title: 'Dashboard',
     type: 'group',
@@ -256,12 +292,12 @@ const NavigationItems = [
         title: 'Dashboard',
         type: 'item',
         classes: 'nav-item',
-        url: '/teacher/default',
+        url: '/app/teacher/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
     ]
-  },
+  }, */
   {
     id: 'main',
     title: 'Main',
@@ -274,7 +310,7 @@ const NavigationItems = [
         title: 'Subjects',
         type: 'item',
         classes: 'nav-item',
-        url: '/teacher/subject',
+        url: '/app/teacher/subject',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -283,19 +319,28 @@ const NavigationItems = [
         title: 'Claims',
         type: 'item',
         classes: 'nav-item',
-        url: '/teacher/claims',
+        url: '/app/teacher/claims',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
-      },/*
+      },
       {
         id: 'main',
-        title: 'Demand',
+        title: 'Internship',
         type: 'item',
         classes: 'nav-item',
-        url: '/student/demand',
+        url: '/app/teacher/internship',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
-      } */
+      } ,
+      {
+        id: 'main',
+        title: 'Presentation',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/teacher/presentation',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      } 
     ]
   },
 ];

@@ -27,6 +27,14 @@ const routes: Routes = [
         path: 'claims',
         loadComponent: () => import('./Claims/claims-page.component')
       },
+      {
+        path: 'presentation',
+        loadComponent: () => import('../admin/presentation/presentation.component')
+      },
+      {
+        path: 'internship',
+        loadComponent: () => import('../admin/internship/internship.component')
+      }
 ];
 
 @NgModule({

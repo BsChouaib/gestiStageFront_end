@@ -15,11 +15,12 @@ import { DeleteSubjectDialogComponent } from './delete-dialog/delete-dialog.comp
 import { AddSubjectDialogComponent } from './add-dialog/add-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sample-page',
   standalone: true,
-  imports: [SharedModule,MatTableModule,MatPaginator,MatMenuModule,MatIconModule,MatButtonModule,MatDialogModule,MatTooltipModule],
+  imports: [SharedModule,MatTableModule,MatPaginator,MatMenuModule,MatIconModule,MatButtonModule,MatDialogModule,MatTooltipModule,CommonModule],
   templateUrl: './sample-page.component.html',
   styleUrls: ['./sample-page.component.scss'],
   providers:[SubjectAdminService]
@@ -28,6 +29,7 @@ export default class SamplePageComponent implements AfterViewInit,OnInit,OnDestr
   
   displayedColumns: string[] = ['title', 'description', 'internshipType', 'teacher','action'];
   dataSource :MatTableDataSource<any>;
+  rows: number[] = Array.from({length: 30}, (_, i) => i + 1);
 
   constructor(private subjectService : SubjectAdminService, private dialog: MatDialog,  private toast: ToastrService
   ){
@@ -93,5 +95,45 @@ export default class SamplePageComponent implements AfterViewInit,OnInit,OnDestr
   }
   ngOnDestroy() {
     this.toast.clear()  }
+
+   /*  generatePDF() {
+      const data = document.getElementById('pdfContent');
+      if (data) {
+        html2canvas(data).then(canvas => {
+          var imgWidth = 208;
+          var pageHeight = 295;
+          var imgHeight = canvas.height * imgWidth / canvas.width;
+          var heightLeft = imgHeight;
+          var margin = 10; // Adjust the margin as needed
+          
+          const contentDataURL = canvas.toDataURL('image/png')
+          let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+          var position = 0;
+    
+          // Function to add content with margins
+          const addContentWithMargin = () => {
+            pdf.addImage(contentDataURL, 'PNG', margin, position + margin, imgWidth - 2 * margin, imgHeight - 2 * margin);
+          };
+    
+          // Add first page with margin
+          addContentWithMargin();
+    
+          // Check if content exceeds one page
+          if (heightLeft > pageHeight) {
+            while (heightLeft > pageHeight) {
+              position -= (pageHeight - 2 * margin); // Move position to next page with margin
+              heightLeft -= (pageHeight - 2 * margin); // Adjust remaining height
+              // Add new page with margin
+              pdf.addPage();
+              addContentWithMargin();
+            }
+          }
+          
+          pdf.save('generated.pdf');
+        });
+      }
+    } */
+    
+    
 
 }

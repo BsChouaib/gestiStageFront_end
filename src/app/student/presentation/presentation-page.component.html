@@ -1,0 +1,31 @@
+<div class="pb-3">
+ 
+<div class="row" *ngIf="length !== 0 && Presentations">
+  <div *ngFor="let presentation of Presentations" class="col-md-12 col-xl-12">
+    <app-card [cardTitle]="presentation.presentationTitle">
+    <p><strong>Date:&nbsp;</strong>{{presentation.presentationDate | date : 'yyyy-MM-dd'}}</p>
+    <p><strong>Start Time:&nbsp;</strong>{{presentation.presentationStartTime | date : 'yyyy-MM-dd hh:mm'}}</p>
+    <p><strong>End Time:&nbsp;</strong>{{presentation.presentationEndTime | date : 'yyyy-MM-dd hh:mm'}}</p>
+    <p><strong>Room:&nbsp;</strong>{{presentation.location}}</p>
+
+<!--     <h6>{{presentation.state}}</h6>
+ -->   
+    </app-card>
+  </div>
+</div>
+<!-- 
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[6, 12, 18]"
+               (page)="onPageChange($event)" >
+</mat-paginator> -->
+<div class="row" *ngIf="length === 0 || !Presentations" >
+  <div class="col-md-12 col-xl-12">
+   
+    <h3 style="text-align: center;padding: 50px;background-color: white;border-radius: 10px;">No Presentation Founded</h3>
+    
+   
+    
+  </div>
+</div>
+</div>

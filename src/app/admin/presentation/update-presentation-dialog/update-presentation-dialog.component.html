@@ -1,0 +1,111 @@
+<div class="addContainer">
+  <div class="modalHeader  d-flex justify-content-between align-items-center">
+        <div class="title-head">Update Presentation </div>
+   <div>
+    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="presentationForm" class="register-form m-4">
+    
+      <div class="col-md-12">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control"  
+            formControlName="presentationTitle" required />
+          <label >Title</label>
+          <mat-error *ngIf="presentationForm.get('presentationTitle').touched && presentationForm.get('presentationTitle').hasError('required')"
+            class="text-red">
+            Required
+          </mat-error>
+          <mat-error
+            *ngIf="presentationForm.get('presentationTitle').touched && presentationForm.get('presentationTitle').hasError('minlength')"
+            class="text-red">
+            At least 5 characters
+          </mat-error>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control"  
+              formControlName="presentationDate"  />
+            <label>Date</label>
+            <mat-error *ngIf="presentationForm.get('presentationDate').touched && presentationForm.get('presentationDate').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="datetime-local" class="form-control"  
+              formControlName="presentationStartTime"  />
+            <label>Start Time</label>
+            <mat-error *ngIf="presentationForm.get('presentationStartTime').touched && presentationForm.get('presentationStartTime').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="datetime-local" class="form-control"  
+              formControlName="presentationEndTime"  />
+            <label>End Time</label>
+            <mat-error *ngIf="presentationForm.get('presentationEndTime').touched && presentationForm.get('presentationEndTime').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  
+              formControlName="location"  />
+            <label >Location</label>
+            <mat-error *ngIf="presentationForm.get('location').touched && presentationForm.get('location').hasError('required')"
+              class="text-red">
+              Required
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <select type="radio" class="form-control"  
+            formControlName="external"  >
+            <option [value]="true">True</option>
+            <option [value]="false">False</option>
+          </select>
+            <label >Gender</label>
+          </div>
+        </div>
+        
+      </div>
+    </form>
+    </mat-dialog-content>
+  </div>
+    <mat-dialog-actions class=" justify-content-end" ><!--  -->
+     
+          <div class="example-button-row">
+            <button
+              color="primary"
+              mat-raised-button
+              (click)="submit()"
+            >
+              Save
+            </button>
+            <button (click)="fermer()" color="warn" mat-raised-button tabindex="-1">Cancel</button>
+          </div>
+       
+    </mat-dialog-actions>
+
+      
+    

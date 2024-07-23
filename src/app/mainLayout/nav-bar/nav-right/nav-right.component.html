@@ -15,7 +15,7 @@
             <a href="javascript:!" class="link-primary float-end text-decoration-underline">Mark as all read</a>
             <h5>
               All Notification
-              <span class="badge bg-warning rounded-pill ms-1">01</span>
+              <span class="badge bg-warning rounded-pill ms-1">{{nbrNotif}}</span>
             </h5>
           </div>
           <ng-scrollbar style="height: calc(100vh - 215px)" visibility="hover">
@@ -29,7 +29,7 @@
                     <option value="other">Other</option>
                   </select>
                 </div>
-                <a class="list-group-item list-group-item-action">
+                <!-- <a class="list-group-item list-group-item-action">
                   <div class="d-flex">
                     <div class="flex-shrink-0">
                       <img src="assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
@@ -84,17 +84,19 @@
                       </div>
                     </div>
                   </div>
-                </a>
-                <a class="list-group-item list-group-item-action">
+                </a> -->
+
+                <a class="list-group-item list-group-item-action" *ngFor="let notif of notifList">
                   <div class="d-flex">
                     <div class="flex-shrink-0">
                       <img src="assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar" />
                     </div>
                     <div class="flex-grow-1 ms-1">
-                      <span class="float-end text-muted">10 min ago</span>
-                      <h5>Joseph William</h5>
-                      <p class="text-body fs-6">It is a long established fact that a reader will be distracted </p>
-                      <div class="badge rounded-pill bg-light-success">Confirmation of Account</div>
+                      <!-- <span class="float-end text-muted">10 min ago</span> -->
+                      <h5>{{notif.teacherName}}</h5>
+                      <p class="text-body fs-6"><strong>Title:&nbsp;</strong>{{notif.title}} </p>
+                      <p class="text-body fs-6"><strong>Student:&nbsp;</strong>{{notif.studentName}} </p>
+                      <div class="badge rounded-pill bg-light-success" role="button" (click)="redirectToPresentationUI(notif)">Create Presentation</div>
                     </div>
                   </div>
                 </a>

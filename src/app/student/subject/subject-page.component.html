@@ -1,12 +1,16 @@
 <div class="pb-3">
-<div class="row">
+  <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3" (click)="addSubject()">
+    <span>Add Subject</span>   <mat-icon>add</mat-icon>
+     
+    </button>
+<div class="row" >
   <div *ngFor="let subject of paginatedSubjects" class="col-md-4 col-xl-4">
     <app-card [cardTitle]="subject.title">
     <h5>Description:</h5>
     <p>{{subject.description}}</p>
     <h6>{{subject.temail}}</h6>
-    <div class="btn-container">
-      <button mat-mini-fab  class="fab-button" matTooltip="Add demand" (click)="addDemand(subject)">
+    <div class="btn-container" *ngIf="!hasDemand">
+      <button mat-mini-fab  class="fab-button" matTooltip="Add demand" (click)="addDemand(subject)" >
         <mat-icon>add</mat-icon>
       </button>
     </div>

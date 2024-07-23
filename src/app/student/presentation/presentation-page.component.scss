@@ -1,0 +1,14 @@
+.btn-container {
+    position: relative;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+  }
+  
+  .fab-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 8px; /* Adjust as needed */
+    background-color: #424a6a !important;
+  }

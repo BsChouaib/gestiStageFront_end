@@ -38,6 +38,7 @@ export default class DemandComponent implements AfterViewInit, OnInit, OnDestroy
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource: MatTableDataSource<any>;
   expandedElement: any | null;
+  hasDemand :boolean=false
 
   constructor(private demandService: DemandService, private dialog: MatDialog, private toast: ToastrService, private route: Router
 
@@ -65,6 +66,7 @@ export default class DemandComponent implements AfterViewInit, OnInit, OnDestroy
 
         this.dataSource = new MatTableDataSource(res.data.demands)
         this.dataSource.paginator = this.paginator
+        this.hasDemand = res.data.demands.some(x => x.status === "Pending")
       },
 
       error: (err) => {
@@ -74,7 +76,7 @@ export default class DemandComponent implements AfterViewInit, OnInit, OnDestroy
   }
 
   addDemand() {
-    this.route.navigate(['/student/subject']);
+    this.route.navigate(['/app/student/subject']);
   }
   deleteDemand(demand) {
     const dialogRef = this.dialog.open(DeleteDemandDialogComponent, {

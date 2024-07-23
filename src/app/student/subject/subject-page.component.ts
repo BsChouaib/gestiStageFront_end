@@ -14,6 +14,9 @@ import {MatDialog,MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
 import { AddDemandDialogComponent } from './add-demand-dialog/add-demand-dialog.component';
+import { AddSubjectDialogComponent } from './add-dialog/add-subject-dialog.component';
+import { UniversityService } from 'src/app/Services/university.service';
+import { DemandService } from 'src/app/Services/demand.service';
 
 @Component({
   selector: 'app-subject-student-page',
@@ -33,8 +36,9 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
   pageIndex = 0;
   Subjects: any[] = [];
   paginatedSubjects: any[] = [];
-
-  constructor(private subjectService : SubjectAdminService, private dialog: MatDialog,  private toast: ToastrService
+  studyFieldsList:any
+  hasDemand :boolean=false
+  constructor(private subjectService : SubjectAdminService, private dialog: MatDialog,  private toast: ToastrService,private univService:UniversityService,private demandService:DemandService
   ){
 
   }
@@ -44,6 +48,8 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
 
   ngOnInit() {
     this.getAllSubjects()
+    this.getAllStudyFields()
+    this.getAlldemands()
   }
   ngAfterViewInit() {
     /* this.dataSource = new MatTableDataSource([])
@@ -62,6 +68,19 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
       }
     });
   }
+  getAlldemands() {
+    this.demandService.getAllDemand().subscribe({
+      next: (res) => {
+
+        let demands = res.data.demands
+        this.hasDemand = demands.some(x => x.status === "Pending")
+      },
+
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
    paginateSubjects() {
     const start = this.pageIndex * this.pageSize;
     const end = start + this.pageSize;
@@ -72,6 +91,28 @@ export default class SubjectStudentComponent implements AfterViewInit,OnInit,OnD
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.paginateSubjects();
+  }
+  addSubject(){
+    const dialogRef = this.dialog.open(AddSubjectDialogComponent, {
+      width:'700px',
+      data:this.studyFieldsList
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
+      this.getAllSubjects()
+      }
+    });
+  }
+  getAllStudyFields() {
+    this.univService.getAllStudyFields().subscribe({
+      next: (res) => {
+        this.studyFieldsList = res?.data.StudyField;
+      },
+
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
  /*  updateSubject(subject){
     console.log('activ')

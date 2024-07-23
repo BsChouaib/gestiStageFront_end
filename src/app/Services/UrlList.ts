@@ -11,7 +11,9 @@ export const ConstUtils = {
     ADMIN_API_STUDENT: baseUrl + '/api/student', 
     STUDENT_API_DEMANDE: baseUrl + '/api/demand', 
     STUDENT_API_PRESENTATION: baseUrl + '/api/presentation',
-    API_STUDYFIELD: baseUrl + '/api/StudyField',  
+    STUDENT_API_INTERNSHIP: baseUrl + '/api/internship',
+    API_STUDYFIELD: baseUrl + '/api/StudyField', 
+    NOTIF_API:baseUrl + '/api/notification' 
 
 
 }
