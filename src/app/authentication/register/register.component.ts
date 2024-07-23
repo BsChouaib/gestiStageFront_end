@@ -60,6 +60,6 @@ export default class RegisterComponent implements OnInit {
     }})
   }
   nav() {
-    this.router.navigateByUrl('/guest/login')
+    this.router.navigateByUrl('auth/guest/login')
   }
 }

@@ -39,10 +39,10 @@ const routes: Routes = [
       }
     ]
   },
- /*  {
+  {
     path: '**',
      redirectTo: 'auth/guest/login', pathMatch: 'full'
-  }, */
+  }, 
 
 ];
 
