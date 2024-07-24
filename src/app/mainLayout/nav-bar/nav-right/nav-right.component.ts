@@ -37,7 +37,7 @@ export class NavRightComponent implements OnInit ,OnDestroy{
       this.getAllNotif();
       this.intervalId = setInterval(() => {
         this.getAllNotif();
-      }, 100000);
+      }, 1000);
     }
   }
 
