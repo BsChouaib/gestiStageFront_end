@@ -74,10 +74,10 @@ export class AuthenticationService {
         redirectRoute = 'app/admin/default';
         break;
       case "TEACHER":
-        redirectRoute = 'app/teacher/default';
+        redirectRoute = 'app/teacher/subject';
         break;
       case "STUDENT":
-        redirectRoute = 'app/student/default';
+        redirectRoute = 'app/student/subject';
         break;
       default:
         redirectRoute = 'auth/guest/login';

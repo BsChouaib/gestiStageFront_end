@@ -49,7 +49,6 @@ export class AddPresentationDialogComponent implements OnInit, OnDestroy, AfterV
       presentationDate: ['', Validators.required],
       location: ['', Validators.required],
       external: [false],
-
     });
   }
 
@@ -64,7 +63,7 @@ export class AddPresentationDialogComponent implements OnInit, OnDestroy, AfterV
     const loadingToast = this.toast.info('Loading...', 'Please wait', {
       closeButton: true,
     }); 
-    
+   
     this.presService.createPresentation(this.data?.internshipId,this.presentationForm.value).subscribe({
       next:(res)=>{
         this.toast.clear(loadingToast.toastId);

@@ -15,7 +15,6 @@ File: style.css
 @import 'node_modules/bootstrap/scss/variables';
 @import 'settings/custom-variables';
 @import 'settings/theme-variables';
-
 @import 'node_modules/bootstrap/scss/mixins';
 
 @each $name, $value in $preset-colors {

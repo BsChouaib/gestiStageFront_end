@@ -1,88 +1,115 @@
 <div class="row">
-    <div class="col-sm-12">
-      <app-card cardTitle="Presentations List">
-        <!-- <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3" (click)="addPresentation()">
+  <div class="col-sm-12">
+    <app-card cardTitle="Presentations List">
+      <!-- <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="me-3 mb-3" (click)="addPresentation()">
         <span>Add Presentation</span>   <mat-icon>add</mat-icon>
          
         </button> -->
-        <button mat-raised-button aria-label="Example icon-button with a menu"  color="primary" class="mb-3" (click)="getAllPresentation()">
-          <span>Refresh</span>   <mat-icon>refresh</mat-icon>
-        </button>
-        <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource">
-  
-            <!-- presentationTitle  Column -->
-            <ng-container matColumnDef="presentationTitle">
-              <th mat-header-cell *matHeaderCellDef>Title </th>
-              <td mat-cell *matCellDef="let element" [matTooltip]="element.presentationTitle"> {{element.presentationTitle  | truncate : 40}} </td>
-            </ng-container>
-  
-            <!-- presentationDate Column -->
-            <ng-container matColumnDef="presentationDate">
-              <th mat-header-cell *matHeaderCellDef> Date </th>
-              <td mat-cell *matCellDef="let element" > {{element.presentationDate || '' | date : 'yyyy-MM-dd'}} </td>
-            </ng-container>
-  
-            <!-- presentationStartTime Column -->
-            <ng-container matColumnDef="presentationStartTime">
-              <th mat-header-cell *matHeaderCellDef> Start Time </th>
-              <td mat-cell *matCellDef="let element"  > {{element.presentationStartTime || '' | date : 'yyyy-MM-dd hh:mm'}} </td>
-            </ng-container>
-  
-            <!-- presentationEndTime Column -->
-            <ng-container matColumnDef="presentationEndTime">
-              <th mat-header-cell *matHeaderCellDef> End Time </th>
-              <td mat-cell *matCellDef="let element" > {{element.presentationEndTime || '' | date : 'yyyy-MM-dd hh:mm'}} </td>
-            </ng-container>
-             <!-- location Column -->
-             <ng-container matColumnDef="location">
-              <th mat-header-cell *matHeaderCellDef> Location </th>
-              <td mat-cell *matCellDef="let element" [matTooltip]="element.location" > {{element.location || '' | truncate : 20}} </td>
-            </ng-container>
-             <!-- result Column -->
-             <ng-container matColumnDef="result">
-              <th mat-header-cell *matHeaderCellDef> Result </th>
-              <td mat-cell *matCellDef="let element" (click)="onResultCheck(element)">
-                <span class="badge bg-success" *ngIf="element.result=='Done'">{{element.result}}</span>
-              <span class="badge bg-danger" *ngIf="element.result=='Failed'">{{element.result}}</span>
-              <span class="badge bg-warning text-dark"  *ngIf="element.result=='In progress'">{{element.result}}</span>
-               </td>
-            </ng-container>
-            <!-- action Column -->
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef> Actions </th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="element"
-                  aria-label="Example icon-button with a menu">
-                  <mat-icon>more_vert</mat-icon>
+      <button mat-raised-button aria-label="Example icon-button with a menu" color="primary" class="mb-3"
+        (click)="getAllPresentation()">
+        <span>Refresh</span> <mat-icon>refresh</mat-icon>
+      </button>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- presentationTitle  Column -->
+          <ng-container matColumnDef="presentationTitle">
+            <th mat-header-cell *matHeaderCellDef>Title </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.presentationTitle"> {{element.presentationTitle
+              | truncate : 40}} </td>
+          </ng-container>
+
+          <!-- presentationDate Column -->
+          <ng-container matColumnDef="presentationDate">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.presentationDate || '' | date : 'yyyy-MM-dd'}} </td>
+          </ng-container>
+
+          <!-- presentationStartTime Column -->
+          <ng-container matColumnDef="presentationStartTime">
+            <th mat-header-cell *matHeaderCellDef> Start Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.presentationStartTime || '' | date : 'yyyy-MM-dd hh:mm'}}
+            </td>
+          </ng-container>
+
+          <!-- presentationEndTime Column -->
+          <ng-container matColumnDef="presentationEndTime">
+            <th mat-header-cell *matHeaderCellDef> End Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.presentationEndTime || '' | date : 'yyyy-MM-dd hh:mm'}}
+            </td>
+          </ng-container>
+          <!-- location Column -->
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef> Location </th>
+            <td mat-cell *matCellDef="let element" [matTooltip]="element.location"> {{element.location || '' | truncate
+              : 20}} </td>
+          </ng-container>
+          <!-- result Column -->
+          <ng-container matColumnDef="result">
+            <th mat-header-cell *matHeaderCellDef> Result </th>
+            <td mat-cell *matCellDef="let element" (click)="onResultCheck(element)">
+              <span class="badge bg-success" *ngIf="element.result.status=='Done'">{{element.result.status}}</span>
+              <span class="badge bg-danger" *ngIf="element.result.status=='Failed'">{{element.result.status}}</span>
+              <span class="badge bg-warning text-dark"
+                *ngIf="element.result.status=='InProgress'">{{element.result.status}}</span>
+            </td>
+          </ng-container>
+          <!-- action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="element"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="updatePresentation(element)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Update</span>
                 </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="updatePresentation(element)">
-                    <mat-icon>edit</mat-icon>
-                    <span>Update</span>
-                  </button>
-                  <button mat-menu-item (click)="deletePresentation(element)">
-                    <mat-icon>info</mat-icon>
-                    <span>Details</span>
-                  </button>
-                </mat-menu>
-              </td>
-            </ng-container>
-  
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          <div *ngIf=" !dataSource || dataSource?.data.length == 0" class="text-center py-5">
-            No data
-          </div>
-          <div [hidden]="!dataSource || dataSource?.data.length == 0">
-            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons
-            aria-label="Select page of periodic elements"  >
-          </mat-paginator>
-          </div >
-          
+                <button mat-menu-item (click)="deletePresentation(element)">
+                  <mat-icon>info</mat-icon>
+                  <span>Details</span>
+                </button>
+                <!-- Done Button -->
+                <button mat-menu-item (click)="updatePresentationStatus(element, 'Done')"
+                  [disabled]="element.result.status === 'Done'">
+                  <mat-icon [ngStyle]="{'color': 'green'}">done</mat-icon>
+                  <span>Done</span>
+                </button>
+
+                <!-- InProgress Button -->
+                <button mat-menu-item (click)="updatePresentationStatus(element, 'InProgress')"
+                  [disabled]="element.result.status === 'InProgress'">
+                  <mat-icon [ngStyle]="{'color': 'orange'}">pending</mat-icon>
+                  <span>InProgress</span>
+                </button>
+
+                <!-- Failed Button -->
+                <button mat-menu-item (click)="updatePresentationStatus(element, 'Failed')"
+                  [disabled]="element.result.status === 'Failed'">
+                  <mat-icon [ngStyle]="{'color': 'red'}">error</mat-icon>
+                  <span>Failed</span>
+                </button>
+
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div *ngIf=" !dataSource || dataSource?.data.length == 0" class="text-center py-5">
+          No data
         </div>
-  
-      </app-card>
-    </div>
+        <div [hidden]="!dataSource || dataSource?.data.length == 0">
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+
+      </div>
+
+    </app-card>
   </div>
+</div>

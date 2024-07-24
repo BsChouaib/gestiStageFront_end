@@ -3,10 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
       {
-        path: 'default',
-        loadComponent: () => import('./default/default.component')
-      },
-      {
         path: 'claims',
         loadComponent: () => import('./Claims/claims-page.component')
       },
@@ -27,6 +23,11 @@ const routes: Routes = [
       {
         path: 'presentation',
         loadComponent: () => import('./presentation/presentation-page.component')
+      }
+      ,
+      {
+        path: 'chat',
+        loadComponent: () => import('./chat-student/chat-student.component')
       }
 ];
 

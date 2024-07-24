@@ -1,7 +1,8 @@
 // Angular import
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { interval, Subscription, switchMap } from 'rxjs';
 import { AddPresentationDialogComponent } from 'src/app/admin/presentation/add-presentation-dialog/add-presentation-dialog.component';
 import PresentationComponent from 'src/app/admin/presentation/presentation.component';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
@@ -14,10 +15,13 @@ import { DataRefreshService } from 'src/app/Services/refreshData.service';
   styleUrls: ['./nav-right.component.scss']
   //providers:[InternshipService],
 })
-export class NavRightComponent implements OnInit {
+export class NavRightComponent implements OnInit ,OnDestroy{
   notifList: any[] = [];
   nbrNotif: number = 0;
+  intervalId: any;
   @ViewChild(PresentationComponent) presentationComponent: PresentationComponent;
+  
+
 
   constructor(
     private authService: AuthenticationService,
@@ -31,6 +35,9 @@ export class NavRightComponent implements OnInit {
     let role = this.internshipService.getRole();
     if (role === 'ADMIN') {
       this.getAllNotif();
+      this.intervalId = setInterval(() => {
+        this.getAllNotif();
+      }, 100000);
     }
   }
 
@@ -69,5 +76,10 @@ export class NavRightComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.dataRefreshService.requestRefresh();
     });
+  }
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule } from '@angular/material/dialog';
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, UntypedFormBuilder, UntypedFormGroup,  FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, UntypedFormGroup, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatSelect } from "@angular/material/select";
 
@@ -17,8 +17,8 @@ import { PresentaionService } from 'src/app/Services/presentation.service';
   styleUrls: ['./update-presentation-dialog.component.sass'],
   standalone: true,
   imports: [MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, FormsModule,
-    ReactiveFormsModule, MatIconModule, MatDialogModule,MatFormFieldModule,CommonModule],
-    providers:[PresentaionService,DatePipe]
+    ReactiveFormsModule, MatIconModule, MatDialogModule, MatFormFieldModule, CommonModule],
+  providers: [PresentaionService, DatePipe]
 })
 export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -35,8 +35,8 @@ export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, Aft
     public dialogRef: MatDialogRef<UpdatePresentationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: UntypedFormBuilder,
-    private presentationService : PresentaionService,
-    private toast :ToastrService,
+    private presentationService: PresentaionService,
+    private toast: ToastrService,
     private datePipe: DatePipe
 
   ) {
@@ -50,7 +50,8 @@ export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, Aft
       presentationDate: [this.formatDate(this.presentation?.presentationDate), Validators.required],
       location: [this.presentation?.location, Validators.required],
       external: [this.presentation?.external],
-
+      passMark:[this.presentation?.result?.passMark],
+      rating:[this.presentation?.result?.rating],
     });
   }
 
@@ -62,9 +63,25 @@ export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, Aft
   submit() {
     const loadingToast = this.toast.info('Loading...', 'Please wait', {
       closeButton: true,
-    });    
-    this.presentationService.updatePresentation(this.presentation?.presentationId,this.presentationForm.value).subscribe({
-      next:(res)=>{
+    });
+    let data = {
+      presentationTitle: this.presentationForm.value.presentationTitle,
+      presentationStartTime: this.presentationForm.value.presentationStartTime,
+      presentationEndTime: this.presentationForm.value.presentationEndTime,
+      presentationDate: this.presentationForm.value.presentationDate,
+      location: this.presentationForm.value.location,
+      external: this.presentationForm.value.external,
+      result: {
+        "id":  this.presentation?.result?.id,
+        "passMark": this.presentationForm.value.passMark,
+        "rating": this.presentationForm.value.rating,
+        "status": this.presentation?.result?.status
+      },
+    }
+    data.presentationStartTime = this.formatDateForSubmission(data.presentationStartTime);
+  data.presentationEndTime = this.formatDateForSubmission(data.presentationEndTime);
+    this.presentationService.updatePresentation(this.presentation?.presentationId, data).subscribe({
+      next: (res) => {
         this.toast.clear(loadingToast.toastId);
 
         this.toast.success('Presentation updated Successfully', 'Success', {
@@ -73,13 +90,13 @@ export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, Aft
         });
       },
 
-      error:(err)=>{
-          console.log(err)
-          this.toast.clear(loadingToast.toastId);
-          this.toast.error('Update presentation Failed', 'Error', {
-           progressBar: true,
-           closeButton: true,
-         });
+      error: (err) => {
+        console.log(err)
+        this.toast.clear(loadingToast.toastId);
+        this.toast.error('Update presentation Failed', 'Error', {
+          progressBar: true,
+          closeButton: true,
+        });
       }
     })
   }
@@ -103,7 +120,16 @@ export class UpdatePresentationDialogComponent implements OnInit, OnDestroy, Aft
 
   ngOnDestroy() {
   }
-
+  formatDateForSubmission(date: Date): string {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+    const day = ('0' + d.getDate()).slice(-2);
+    const hours = ('0' + d.getHours()).slice(-2);
+    const minutes = ('0' + d.getMinutes()).slice(-2);
+    const seconds = ('0' + d.getSeconds()).slice(-2);
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  }
 
 }
 

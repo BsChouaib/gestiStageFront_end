@@ -45,8 +45,9 @@ export default class PresentationComponent implements OnInit, OnDestroy {
     'presentationStartTime',
     'presentationEndTime',
     'location',
+    'result',
     'action'
-  ];/*     'result',
+  ];/*     
   */
   dataSource: MatTableDataSource<any>;
   studyFieldsList: any;
@@ -153,6 +154,31 @@ export default class PresentationComponent implements OnInit, OnDestroy {
 
       error: (err) => {
         console.log(err);
+      }
+    });
+  }
+  updatePresentationStatus(element: any, newState: string) {
+    const loadingToast = this.toast.info('Loading...', 'Please wait', {
+      closeButton: true,
+    });
+    this.presentationService.updatePresentationStatus(element.presentationId,newState).subscribe({
+      next: (res) => {
+        this.toast.clear(loadingToast.toastId);
+
+        this.toast.success(`Presentation Status changed Successfully`, 'Success', {
+          progressBar: true,
+          closeButton: true,
+        });
+
+      this.getAllPresentation()      },
+
+      error: (err) => {
+        console.log(err);
+        this.toast.clear(loadingToast.toastId);
+        this.toast.error('Change Presentation Status Failed', 'Error', {
+          progressBar: true,
+          closeButton: true,
+        });
       }
     });
   }

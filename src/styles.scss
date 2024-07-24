@@ -34,6 +34,7 @@ $pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
 
 @import 'scss/themes/customizer';
 @import 'scss/style-preset.scss';
+@import 'scss/themes/_chat.scss';
 
 // fonts
 @import url('scss/fonts/berry/berry-icons.css'); /** custom font icons - berry **/

@@ -89,6 +89,23 @@
         </div>
         
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  
+              formControlName="passMark"  />
+            <label >Mention</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control"  
+              formControlName="rating"  />
+            <label >Note</label>
+          </div>
+        </div>
+        
+      </div>
     </form>
     </mat-dialog-content>
   </div>
@@ -99,6 +116,7 @@
               color="primary"
               mat-raised-button
               (click)="submit()"
+              [mat-dialog-close]="1"
             >
               Save
             </button>

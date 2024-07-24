@@ -5,7 +5,7 @@
       <app-card [cardTitle]="internship.titre">
         <p><strong>Start Date:&nbsp;</strong>{{internship.dateDebut | date : 'yyyy-MM-dd'}}</p>
         <p><strong>End Date:&nbsp;</strong>{{internship.dateFin | date : 'yyyy-MM-dd'}}</p>
-        <p><strong>State:&nbsp;</strong>
+        <p><strong>Status:&nbsp;</strong>
           <span class="badge bg-success" *ngIf="internship.state=='Done'">{{internship.state}}</span>
           <span class="badge bg-danger" *ngIf="internship.state=='Failed'">{{internship.state}}</span>
           <span class="badge bg-warning text-dark" *ngIf="internship.state=='InProgress'">{{internship.state}}</span>

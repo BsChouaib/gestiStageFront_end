@@ -31,6 +31,7 @@ export class UpdateInternshipDialogComponent implements OnInit, OnDestroy, After
 
   searchMeetingControl = new FormControl();
   internshipForm: FormGroup
+
   constructor(
     public dialogRef: MatDialogRef<UpdateInternshipDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -58,21 +59,25 @@ export class UpdateInternshipDialogComponent implements OnInit, OnDestroy, After
     this.dialogRef.close();
   }
 
-
+/* 
+2023-07-23T15:30:00
+  */
   submit() {
     console.log(this.internshipForm)
       const loadingToast = this.toast.info('Loading...', 'Please wait', {
       closeButton: true,
     });    
     let data = this.internshipForm.value
-   
-    /* const formData = new FormData();
+   // Format the dates before submitting
+  data.dateDebut = this.formatDateForSubmission(data.dateDebut);
+  data.dateFin = this.formatDateForSubmission(data.dateFin);
+  
+     const formData = new FormData();
     
     formData.append("internshipReport", data.internshipReport);
     formData.append("internshipJournal", data.internshipJournal); 
-    formData.append("internshipDto", data); 
- */
-    this.internshipService.updateInternship(data).subscribe({
+ 
+    this.internshipService.updateInternship(data,formData).subscribe({
       next:(res)=>{
         this.toast.clear(loadingToast.toastId);
 
@@ -138,6 +143,16 @@ export class UpdateInternshipDialogComponent implements OnInit, OnDestroy, After
   formatDate(dateString: string): string | null {
     if (!dateString) return null;
     return this.datePipe.transform(dateString, 'yyyy-MM-dd');
+  }
+  formatDateForSubmission(date: Date): string {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+    const day = ('0' + d.getDate()).slice(-2);
+    const hours = ('0' + d.getHours()).slice(-2);
+    const minutes = ('0' + d.getMinutes()).slice(-2);
+    const seconds = ('0' + d.getSeconds()).slice(-2);
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
   }
 }
 

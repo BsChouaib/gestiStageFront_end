@@ -42,9 +42,16 @@ export class PresentaionService {
         Authorization: `Bearer ${this.token}`
       });
   
-      return this.http.put<any>(`${this.Presentation_api_url}/update/${id}`, data, { headers });
+      return this.http.put<any>(`${this.Presentation_api_url}/${id}`, data, { headers });
     }
+    updatePresentationStatus(id:number,data: any) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      });
   
+      return this.http.put<any>(`${this.Presentation_api_url}/${id}/status?newState=${data}`, data, { headers });
+    }
     // Delete a Presentation by ID
     deletePresentation(id: number) {
       const headers = new HttpHeaders({

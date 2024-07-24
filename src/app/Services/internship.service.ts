@@ -25,15 +25,15 @@ export class InternshipService {
   }
 
   // Update an existing Internship by ID
-  updateInternship( data: any) {
+  updateInternship( data: any,formData) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`
     });
-
+/* &internshipJournal=${data.internshipJournal}&internshipReport=${data.internshipReport} */
     return this.http.put<any>(
-      `${this.Internship_api_url}/update?dateDebut=${data.dateDebut}&dateFin=${data.dateFin}&id=${data.id}&internshipJournal=${data.internshipJournal}&internshipReport=${data.internshipReport}&newState=${data.state}&titre=${data.titre}`,
-      {},
+      `${this.Internship_api_url}/update?dateDebut=${data.dateDebut}&dateFin=${data.dateFin}&id=${data.id}&newState=${data.state}&titre=${data.titre}`,
+      formData,
       { headers }
     );
     //      return this.http.put<any>(`${this.Internship_api_url}/${id}?dateDebut=${data.dateDebut}&dateFin=${data.dateFin}`, data, { headers });

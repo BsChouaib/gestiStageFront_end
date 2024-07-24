@@ -77,7 +77,7 @@ export class UpdateDemandDialogComponent implements OnInit, OnDestroy, AfterView
     if(data.cv)
     formData.append("resume", data.cv);
     if(data.cover_letter)
-    formData.append("motivationLetter", data.cover_letter);
+    formData.append("coverLetter", data.cover_letter);
      this.demandService.updateDemand(data,formData).subscribe({
       next:(res)=>{
         this.toast.clear(loadingToast.toastId);

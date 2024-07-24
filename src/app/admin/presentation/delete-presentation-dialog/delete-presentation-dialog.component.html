@@ -1,48 +1,56 @@
 <div class="addContainer">
   <div class="modalHeader  d-flex justify-content-between align-items-center">
-        <div class="title-head">Presentation Details</div>
-   <div>
-    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+    <div class="title-head">Presentation Details</div>
+    <div>
+      <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
 
   <mat-dialog-content>
     <div class="d-flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
-      <div class=" p-4 ps-2 me-3 rounded-lg flex-1 " style="background-color:#f8f8f8;border-radius: 10px;">
+      <div class=" p-4 ps-2 me-3 rounded-lg flex-1 " style="background-color:#f8f8f8;border-radius: 10px;"
+        [ngClass]="presentation.result?.rating ? 'me-3': 'col-12'">
         <h2 class="text-xl font-semibold mb-2 text-secondary-foreground">Presentation Information</h2>
-        <p class="text-muted-foreground"><strong>Date:&nbsp;</strong> {{presentation.presentationDate | date:&nbsp; 'MMMM d, y'}}</p>
-        <p class="text-muted-foreground"><strong>Start Time:&nbsp;</strong> {{presentation.presentationStartTime  | date:&nbsp; 'MMMM d, y HH:&nbsp;mm' }}</p>
-        <p class="text-muted-foreground"><strong>End Time:&nbsp;</strong> {{presentation.presentationEndTime  | date:&nbsp; 'MMMM d, y HH:&nbsp;mm' }}</p>
+        <p class="text-muted-foreground"><strong>Date:&nbsp;</strong> {{presentation.presentationDate | date:&nbsp;
+          'MMMM d, y'}}</p>
+        <p class="text-muted-foreground"><strong>Start Time:&nbsp;</strong> {{presentation.presentationStartTime |
+          date:&nbsp; 'MMMM d, y HH:&nbsp;mm' }}</p>
+        <p class="text-muted-foreground"><strong>End Time:&nbsp;</strong> {{presentation.presentationEndTime |
+          date:&nbsp; 'MMMM d, y HH:&nbsp;mm' }}</p>
         <p class="text-muted-foreground"><strong>Location:&nbsp;</strong> {{presentation.location}}</p>
         <p class="text-muted-foreground"><strong>Title:&nbsp;</strong> {{presentation.presentationTitle}}</p>
       </div>
-      <div class=" p-4 rounded-lg flex-1 " *ngIf="presentation.moyenne" style="background-color:#f8f8f8;border-radius: 10px;">
+      <div class=" p-4 rounded-lg flex-1 " *ngIf="presentation.result?.rating"
+        style="background-color:#f8f8f8;border-radius: 10px;">
         <h2 class="text-xl font-semibold mb-2 text-secondary-foreground">Results</h2>
-        <p class="text-muted-foreground"><strong>Status:&nbsp;</strong> <span class="badge bg-success" *ngIf="presentation.result=='Done'">{{presentation.result}}</span>
-          <span class="badge bg-danger" *ngIf="presentation.result=='Failed'">{{presentation.result}}</span>
-          <span class="badge bg-warning text-dark"  *ngIf="presentation.result=='In progress'">{{presentation.result}}</span></p>
-        <p class="text-muted-foreground"><strong>Mention:&nbsp;</strong> {{presentation.mention}}</p>
-        <p class="text-muted-foreground"><strong>Average Score:&nbsp;</strong> {{presentation.moyenne}}</p>
+        <p class="text-muted-foreground"><strong>Status:&nbsp;</strong> <span class="badge bg-success"
+            *ngIf="presentation?.result?.status ==='Done'">{{presentation?.result?.status}}</span>
+          <span class="badge bg-danger"
+            *ngIf="presentation?.result?.status ==='Failed'">{{presentation?.result?.status}}</span>
+          <span class="badge bg-warning text-dark"
+            *ngIf="presentation?.result?.status ==='InProgress'">{{presentation?.result?.status}}</span>
+        </p>
+        <p class="text-muted-foreground"><strong>Mention:&nbsp;</strong> {{presentation?.result?.passMark}}</p>
+        <p class="text-muted-foreground"><strong>Note:&nbsp;</strong> {{presentation?.result?.rating}}</p>
       </div>
     </div>
     <div class="mt-2 bg-accent p-2 rounded-lg" style="background-color:#f8f8f8;border-radius: 10px;">
       <h2 class="text-xl font-semibold mb-2 text-accent-foreground">Student & Supervisor</h2>
-      <p class="text-muted-foreground"><strong>Student:&nbsp;</strong> {{presentation.studentName}}</p>
-      <p class="text-muted-foreground"><strong>Supervisor:&nbsp;</strong> {{presentation.encadrant}}</p>
+      <p class="text-muted-foreground"><strong>Student:&nbsp;</strong> {{presentation.student.firstname + '
+        '+presentation.student.firstname }}</p>
+      <p class="text-muted-foreground"><strong>Supervisor:&nbsp;</strong> {{presentation.teacher.firstname + '
+        '+presentation.teacher.firstname}}</p>
     </div>
-    <div class="mt-2 bg-accent p-2 rounded-lg" style="background-color:#f8f8f8;border-radius: 10px;">
+    <!-- <div class="mt-2 bg-accent p-2 rounded-lg" style="background-color:#f8f8f8;border-radius: 10px;">
       <h2 class="text-xl font-semibold mb-2 text-accent-foreground">Jury</h2>
       <p class="text-muted-foreground"  ><strong>Members:&nbsp;</strong> <span *ngFor="let res of presentation.juryList">{{res}},&nbsp;</span></p>
       <p class="text-muted-foreground" *ngIf="presentation.juryDescription"><strong>Description:&nbsp;</strong> {{presentation.juryDescription}}</p>
-    </div>
-    
-    </mat-dialog-content>
-  </div>
-   <!--  <mat-dialog-actions class=" justify-content-end" >
+    </div> -->
+
+  </mat-dialog-content>
+</div>
+<!--  <mat-dialog-actions class=" justify-content-end" >
        
     </mat-dialog-actions> -->
-
-      
-    

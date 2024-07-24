@@ -7,6 +7,18 @@
     <p><strong>Start Time:&nbsp;</strong>{{presentation.presentationStartTime | date : 'yyyy-MM-dd hh:mm'}}</p>
     <p><strong>End Time:&nbsp;</strong>{{presentation.presentationEndTime | date : 'yyyy-MM-dd hh:mm'}}</p>
     <p><strong>Room:&nbsp;</strong>{{presentation.location}}</p>
+    <p><strong>Status:&nbsp;</strong>
+      <span class="badge bg-success" *ngIf="presentation.result?.status=='Done'">{{presentation.result?.status}}</span>
+      <span class="badge bg-danger" *ngIf="presentation.result?.status=='Failed'">{{presentation.result?.status}}</span>
+      <span class="badge bg-warning text-dark" *ngIf="presentation.result?.status=='InProgress'">{{presentation.result?.status}}</span>
+    </p>
+    <p><strong>Teacher Name:&nbsp;</strong>{{presentation.teacher?.firstname + ' ' + presentation.teacher?.lastname}}
+      <p><strong>Teacher Email:&nbsp;</strong>{{presentation.teacher?.email}}</p>
+
+    <div *ngIf="presentation.result?.rating">
+      <p><strong>Mention:&nbsp;</strong>{{presentation.result?.passMark}}</p>
+      <p><strong>Note:&nbsp;</strong>{{presentation.result?.rating}}</p>
+    </div>
 
 <!--     <h6>{{presentation.state}}</h6>
  -->   

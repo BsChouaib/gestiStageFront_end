@@ -182,6 +182,16 @@ const NavigationItems = [
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       } 
+      ,
+      {
+        id: 'main',
+        title: 'Chat',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/student/chat',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      } 
     ]
   },
  /*  {
@@ -340,7 +350,16 @@ const NavigationItems = [
         url: '/app/teacher/presentation',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
-      } 
+      },
+      {
+        id: 'main',
+        title: 'Chat',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/app/teacher/chat',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
+      }
     ]
   },
 ];

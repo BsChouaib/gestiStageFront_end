@@ -60,7 +60,7 @@ export class AddDemandDialogComponent implements OnInit, OnDestroy, AfterViewIni
     let data = this.demandForm.value
     const formData = new FormData();
     formData.append("resume", data.cv);
-    formData.append("motivationLetter", data.cover_letter);
+    formData.append("coverLetter", data.cover_letter);
      this.demandService.createDemand(data,formData).subscribe({
       next:(res)=>{
         this.toast.clear(loadingToast.toastId);

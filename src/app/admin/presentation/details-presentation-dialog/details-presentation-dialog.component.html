@@ -11,28 +11,32 @@
   <mat-dialog-content>
     <div class="mb-6">
       <label class="block text-sm font-medium text-muted-foreground">Student Name</label>
-      <p class="text-lg font-semibold text-secondary">{{presentation.studentName}}</p>
+      <p class="text-lg font-semibold text-secondary">{{presentation.student.firstname + '
+        '+presentation.student.firstname}}</p>
     </div>
     <div class="mb-6">
       <label class="block text-sm font-medium text-muted-foreground">Result</label>
       <p class="text-lg font-semibold text-accent">
-        <span class="badge bg-success" *ngIf="presentation.result=='Done'">{{presentation.result}}</span>
-              <span class="badge bg-danger" *ngIf="presentation.result=='Failed'">{{presentation.result}}</span>
-              <span class="badge bg-warning text-dark"  *ngIf="presentation.result=='In progress'">{{presentation.result}}</span>
+        <span class="badge bg-success"
+            *ngIf="presentation?.result?.status ==='Done'">{{presentation?.result?.status}}</span>
+          <span class="badge bg-danger"
+            *ngIf="presentation?.result?.status ==='Failed'">{{presentation?.result?.status}}</span>
+          <span class="badge bg-warning text-dark"
+            *ngIf="presentation?.result?.status ==='InProgress'">{{presentation?.result?.status}}</span>
       </p>
     </div>
-    <div class="mb-6" *ngIf="presentation.mention" >
+    <div class="mb-6" *ngIf="presentation?.result?.passMark && presentation?.result?.passMark !== '-'" >
       <label class="block text-sm font-medium text-muted-foreground">Mention</label>
-      <p class="text-lg font-semibold text-accent">{{presentation.mention}}</p>
+      <p class="text-lg font-semibold text-accent">{{presentation?.result?.passMark}}</p>
     </div>
-    <div class="mb-6" *ngIf="presentation.moyenne">
+    <div class="mb-6" *ngIf="presentation?.result?.rating">
       <label class="block text-sm font-medium text-muted-foreground">Note</label>
-      <p class="text-lg font-semibold text-accent">{{presentation.moyenne}}</p>
+      <p class="text-lg font-semibold text-accent">{{presentation?.result?.rating}}</p>
     </div>
-    <div class="mb-6" *ngIf="presentation.juryDescription">
+   <!--  <div class="mb-6" *ngIf="presentation.juryDescription">
       <label class="block text-sm font-medium text-muted-foreground">Jury Description</label>
       <p class="text-lg font-semibold text-secondary-foreground">{{presentation.juryDescription}}</p>
-    </div>
+    </div> -->
     </mat-dialog-content>
   </div>
     <mat-dialog-actions class=" justify-content-end" ><!--  -->
