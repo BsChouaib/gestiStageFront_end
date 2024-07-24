@@ -126,6 +126,6 @@ export class BreadcrumbsComponent {
       }
     });
     this.navigationList = result;
-    this.titleService.setTitle(title + ' | Berry Angular Template');
+    this.titleService.setTitle(title + ' | GestiStage');
   }
 }
